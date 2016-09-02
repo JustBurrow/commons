@@ -1,9 +1,7 @@
 package kr.lul.util;
 
 import static java.util.Arrays.asList;
-import static kr.lul.util.Asserts.after;
 import static kr.lul.util.Asserts.assignable;
-import static kr.lul.util.Asserts.before;
 import static kr.lul.util.Asserts.ge;
 import static kr.lul.util.Asserts.gt;
 import static kr.lul.util.Asserts.hasLength;
@@ -15,8 +13,6 @@ import static kr.lul.util.Asserts.longer;
 import static kr.lul.util.Asserts.lt;
 import static kr.lul.util.Asserts.matches;
 import static kr.lul.util.Asserts.negative;
-import static kr.lul.util.Asserts.notAfter;
-import static kr.lul.util.Asserts.notBefore;
 import static kr.lul.util.Asserts.notNegative;
 import static kr.lul.util.Asserts.notNull;
 import static kr.lul.util.Asserts.notPositive;
@@ -27,7 +23,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.time.Instant;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.assertj.core.api.ThrowableAssert.ThrowingCallable;
 import org.junit.Test;
 
@@ -1014,137 +1009,5 @@ public class AssertsTest {
         () -> matches("", ".+", message),
         () -> matches("0", "\\D+", message),
         () -> matches("a", "\\d+", message));
-  }
-
-  @Test
-  public void testBefore() throws Exception {
-    final String message = RandomStringUtils.randomAlphanumeric(10);
-    final Instant now = Instant.now();
-    final Instant before = now.minusMillis(1L);
-
-    assertThrowingCallables(NullPointerException.class,
-        () -> before(null, null),
-        () -> before(null, now),
-        () -> before(now, null),
-        () -> before(null, null, message),
-        () -> before(null, now, message),
-        () -> before(now, null, message));
-
-    before(before, now);
-    before(before, now, null);
-    before(before, now, message);
-
-    assertThrowingCallables(AssertionException.class,
-        () -> before(now, before),
-        () -> before(now, now),
-        () -> before(now, Instant.ofEpochMilli(now.toEpochMilli())),
-        () -> before(now, before, null),
-        () -> before(now, now, null),
-        () -> before(now, Instant.ofEpochMilli(now.toEpochMilli()), null));
-
-    assertThrowingCallables(AssertionException.class, message,
-        () -> before(now, before, message),
-        () -> before(now, now, message),
-        () -> before(now, Instant.ofEpochMilli(now.toEpochMilli()), message));
-  }
-
-  @Test
-  public void testAfter() throws Exception {
-    final String message = RandomStringUtils.randomAlphanumeric(10);
-    final Instant now = Instant.now();
-    final Instant before = now.minusMillis(1L);
-
-    assertThrowingCallables(NullPointerException.class,
-        () -> after(null, null),
-        () -> after(null, now),
-        () -> after(now, null),
-        () -> after(null, null, null),
-        () -> after(null, now, null),
-        () -> after(now, null, null),
-        () -> after(null, null, message),
-        () -> after(null, now, message),
-        () -> after(now, null, message));
-
-    after(now, before);
-    after(now, before, null);
-    after(now, before, message);
-
-    assertThrowingCallables(AssertionException.class,
-        () -> after(now, now),
-        () -> after(now, now, null),
-        () -> after(before, now),
-        () -> after(before, Instant.ofEpochMilli(now.toEpochMilli())),
-        () -> after(before, now, null),
-        () -> after(before, Instant.ofEpochMilli(now.toEpochMilli()), null));
-
-    assertThrowingCallables(AssertionException.class, message,
-        () -> after(now, now, message),
-        () -> after(before, now, message),
-        () -> after(before, Instant.ofEpochMilli(now.toEpochMilli()), message));
-  }
-
-  @Test
-  public void testNotBefore() throws Exception {
-    final String message = RandomStringUtils.randomAlphanumeric(10);
-    final Instant now = Instant.now();
-    final Instant before = now.minusMillis(1L);
-
-    assertThrowingCallables(NullPointerException.class,
-        () -> notBefore(null, null),
-        () -> notBefore(null, now),
-        () -> notBefore(now, null),
-        () -> notBefore(null, null, message),
-        () -> notBefore(null, now, message),
-        () -> notBefore(now, null, message));
-
-    notBefore(now, before);
-    notBefore(now, before, null);
-    notBefore(now, before, message);
-
-    notBefore(now, now);
-    notBefore(now, now, null);
-    notBefore(now, now, message);
-
-    notBefore(now, Instant.ofEpochMilli(now.toEpochMilli()));
-    notBefore(now, Instant.ofEpochMilli(now.toEpochMilli()), null);
-    notBefore(now, Instant.ofEpochMilli(now.toEpochMilli()), message);
-
-    assertThrowingCallables(AssertionException.class, () -> notBefore(before, now));
-    assertThrowingCallables(AssertionException.class, message, () -> notBefore(before, now, message));
-  }
-
-  @Test
-  public void testNotAfter() throws Exception {
-    final String message = RandomStringUtils.randomAlphanumeric(10);
-    final Instant now = Instant.now();
-    final Instant before = now.minusMillis(1L);
-
-    assertThrowingCallables(NullPointerException.class,
-        () -> notAfter(null, null),
-        () -> notAfter(null, now),
-        () -> notAfter(now, null),
-        () -> notAfter(null, null, null),
-        () -> notAfter(null, now, null),
-        () -> notAfter(now, null, null),
-        () -> notAfter(null, null, message),
-        () -> notAfter(null, now, message),
-        () -> notAfter(now, null, message));
-
-    notAfter(before, now);
-    notAfter(before, now, null);
-    notAfter(before, now, message);
-
-    notAfter(now, now);
-    notAfter(now, now, null);
-    notAfter(now, now, message);
-
-    notAfter(now, Instant.ofEpochMilli(now.toEpochMilli()));
-    notAfter(now, Instant.ofEpochMilli(now.toEpochMilli()), null);
-    notAfter(now, Instant.ofEpochMilli(now.toEpochMilli()), message);
-
-    assertThrowingCallables(AssertionException.class,
-        () -> notAfter(now, before),
-        () -> notAfter(now, before, null));
-    assertThrowingCallables(AssertionException.class, message, () -> notAfter(now, before, message));
   }
 }

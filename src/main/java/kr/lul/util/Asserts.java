@@ -2,8 +2,6 @@ package kr.lul.util;
 
 import static java.lang.String.format;
 
-import java.time.Instant;
-
 /**
  * <code>assert</code>를 보완하는 단순한 단정 유틸리티 모음.
  *
@@ -2898,205 +2896,34 @@ public abstract class Asserts {
   }
 
   /**
-   * 시각이 기준시각보다 이전임을 단정한다.
+   * 배열이 비어있지 않음을 단정한다.
    *
-   * @param instant
-   *          단정할 시각.
-   * @param boundary
-   *          기준 시각.
-   * @throws NullPointerException
-   *           단정할 시각 혹은 기준 시각이 <code>null</code>일 때.
+   * @param array
    * @throws AssertionException
-   *           단정 실패.
-   * @author justburrow
-   * @since 2016. 8. 1.
+   *           배열이 <code>null</code> 이거나 비어있을 때.
+   * @author Just Burrow
+   * @since 2016. 9. 2.
    */
-  public static void before(Instant instant, Instant boundary) throws NullPointerException, AssertionException {
-    if (null == instant) {
-      throw new NullPointerException("instant");
-    } else if (null == boundary) {
-      throw new NullPointerException("boundary");
-    } else if (0 <= instant.compareTo(boundary)) {
-      throw new AssertionException(format("instant[%s] is not before than boundary[%s].", instant, boundary));
+  public static <T> void notEmpty(T[] array) throws AssertionException {
+    if (null == array) {
+      throw new AssertionException("array is null.");
+    } else if (0 == array.length) {
+      throw new AssertionException("array is empty.");
     }
   }
 
   /**
-   * 시각이 기준시각보다 이전임을 단정한다.
+   * 배열이 비어있지 않음을 단정한다.
    *
-   * @param instant
-   *          단정할 시각.
-   * @param boundary
-   *          기준 시각.
+   * @param array
    * @param message
-   *          단정 실패시의 예외 메시지.
-   * @throws NullPointerException
-   *           단정할 시각 혹은 기준 시각이 <code>null</code>일 때.
    * @throws AssertionException
-   *           단정 실패.
-   * @author justburrow
-   * @since 2016. 8. 1.
+   *           배열이 <code>null</code> 이거나 비어있을 때.
+   * @author Just Burrow
+   * @since 2016. 9. 2.
    */
-  public static void before(Instant instant, Instant boundary, String message)
-      throws NullPointerException, AssertionException {
-    if (null == instant) {
-      throw new NullPointerException("instant");
-    } else if (null == boundary) {
-      throw new NullPointerException("boundary");
-    } else if (0 <= instant.compareTo(boundary)) {
-      throw new AssertionException(message);
-    }
-  }
-
-  /**
-   * 시각이 기죽시각보다 이후임을 단정한다.
-   *
-   * @param instant
-   *          단정할 시각.
-   * @param boundary
-   *          기준 시각.
-   * @throws NullPointerException
-   *           단정할 시각 혹은 기준 시각이 <code>null</code>일 때.
-   * @throws AssertionException
-   *           단정 실패.
-   * @author justburrow
-   * @since 2016. 8. 1.
-   */
-  public static void after(Instant instant, Instant boundary) throws NullPointerException, AssertionException {
-    if (null == instant) {
-      throw new NullPointerException("instant");
-    } else if (null == boundary) {
-      throw new NullPointerException("boundary");
-    } else if (0 >= instant.compareTo(boundary)) {
-      throw new AssertionException(format("instant[%s] is not after than boundary[%s].", instant, boundary));
-    }
-  }
-
-  /**
-   * 시각이 기죽시각보다 이후임을 단정한다.
-   *
-   * @param instant
-   *          단정할 시각.
-   * @param boundary
-   *          기준 시각.
-   * @param message
-   *          단정 실패시의 예외 메시지.
-   * @throws NullPointerException
-   *           단정할 시각 혹은 기준 시각이 <code>null</code>일 때.
-   * @throws AssertionException
-   *           단정 실패.
-   * @author justburrow
-   * @since 2016. 8. 1.
-   */
-  public static void after(Instant instant, Instant boundary, String message)
-      throws NullPointerException, AssertionException {
-    if (null == instant) {
-      throw new NullPointerException("instant");
-    } else if (null == boundary) {
-      throw new NullPointerException("boundary");
-    } else if (0 >= instant.compareTo(boundary)) {
-      throw new AssertionException(message);
-    }
-  }
-
-  /**
-   * 시각이 기준시각보다 이전이 아님을 단정한다.
-   *
-   * @param instant
-   *          단정할 시각.
-   * @param boundary
-   *          기준 시각.
-   * @throws NullPointerException
-   *           단정할 시각 혹은 기준 시각이 <code>null</code>일 때.
-   * @throws AssertionException
-   *           단정 실패.
-   * @author justburrow
-   * @since 2016. 8. 1.
-   */
-  public static void notBefore(Instant instant, Instant boundary) throws NullPointerException, AssertionException {
-    if (null == instant) {
-      throw new NullPointerException("instant");
-    } else if (null == boundary) {
-      throw new NullPointerException("boundary");
-    } else if (0 > instant.compareTo(boundary)) {
-      throw new AssertionException(format("instant[%s] is before than boundary[%s].", instant, boundary));
-    }
-  }
-
-  /**
-   * 시각이 기준시각보다 이전이 아님을 단정한다.
-   *
-   * @param instant
-   *          단정할 시각.
-   * @param boundary
-   *          기준 시각.
-   * @param message
-   *          단정 실패시의 예외 메시지.
-   * @throws NullPointerException
-   *           단정할 시각 혹은 기준 시각이 <code>null</code>일 때.
-   * @throws AssertionException
-   *           단정 실패.
-   * @author justburrow
-   * @since 2016. 8. 1.
-   */
-  public static void notBefore(Instant instant, Instant boundary, String message)
-      throws NullPointerException, AssertionException {
-    if (null == instant) {
-      throw new NullPointerException("instant");
-    } else if (null == boundary) {
-      throw new NullPointerException("boundary");
-    } else if (0 > instant.compareTo(boundary)) {
-      throw new AssertionException(message);
-    }
-  }
-
-  /**
-   * 시각이 기준시각보다 이후가 아님을 단정한다.
-   *
-   * @param instant
-   *          단정할 시각.
-   * @param boundary
-   *          기준 시각.
-   * @throws NullPointerException
-   *           단정할 시각 혹은 기준 시각이 <code>null</code>일 때.
-   * @throws AssertionException
-   *           단정 실패.
-   * @author justburrow
-   * @since 2016. 8. 1.
-   */
-  public static void notAfter(Instant instant, Instant boundary) throws AssertionException {
-    if (null == instant) {
-      throw new NullPointerException("instant");
-    } else if (null == boundary) {
-      throw new NullPointerException("boundary");
-    } else if (0 < instant.compareTo(boundary)) {
-      throw new AssertionException(format("instant[%s] is after than boundary[%s].", instant, boundary));
-    }
-  }
-
-  /**
-   * 시각이 기준시각보다 이후가 아님을 단정한다.
-   *
-   * @param instant
-   *          단정할 시각.
-   * @param boundary
-   *          기준 시각.
-   * @param message
-   *          단정 실패시의 예외 메시지.
-   * @throws NullPointerException
-   *           단정할 시각 혹은 기준 시각이 <code>null</code>일 때.
-   * @throws AssertionException
-   *           단정 실패.
-   * @author justburrow
-   * @since 2016. 8. 1.
-   */
-  public static void notAfter(Instant instant, Instant boundary, String message)
-      throws NullPointerException, AssertionException {
-    if (null == instant) {
-      throw new NullPointerException("instant");
-    } else if (null == boundary) {
-      throw new NullPointerException("boundary");
-    } else if (0 < instant.compareTo(boundary)) {
+  public static <T> void notEmpty(T[] array, String message) throws AssertionException {
+    if (null == array || 0 == array.length) {
       throw new AssertionException(message);
     }
   }
