@@ -19,6 +19,7 @@ import static kr.lul.util.Asserts.notPositive;
 import static kr.lul.util.Asserts.positive;
 import static kr.lul.util.Asserts.shorter;
 import static kr.lul.util.Asserts.zero;
+import static kr.lul.util.RandomUtil.R;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.time.Instant;
@@ -537,6 +538,56 @@ public class AssertsTest {
   }
 
   @Test
+  public void testLtWithString() throws Exception {
+    // Given
+    final String c1 = "a";
+    final String c2 = "aa";
+    final String c3 = "b";
+
+    // When & Then
+    assertThrowingCallables(NullPointerException.class,
+        () -> lt(c1, null),
+        () -> lt(null, c1),
+        () -> lt(null, null));
+
+    assertThatThrownBy(() -> lt(c1, c1)).isInstanceOf(AssertionException.class);
+    lt(c1, c2);
+    lt(c1, c3);
+
+    assertThrowingCallables(AssertionException.class,
+        () -> lt(c2, c1),
+        () -> lt(c2, c2));
+    lt(c2, c3);
+
+    assertThrowingCallables(AssertionException.class,
+        () -> lt(c3, c1),
+        () -> lt(c3, c2),
+        () -> lt(c3, c3));
+  }
+
+  @Test
+  public void testLtWithInstant() throws Exception {
+    // Given
+    final Instant c1 = Instant.now();
+    final Instant c2 = c1.plusNanos(1L);
+    final Instant c3 = c2.plusNanos(R.positive());
+
+    assertThatThrownBy(() -> lt(c1, c1)).isInstanceOf(AssertionException.class);
+    lt(c1, c2);
+    lt(c1, c3);
+
+    assertThrowingCallables(AssertionException.class,
+        () -> lt(c2, c1),
+        () -> lt(c2, c2));
+    lt(c2, c3);
+
+    assertThrowingCallables(AssertionException.class,
+        () -> lt(c3, c1),
+        () -> lt(c3, c2),
+        () -> lt(c3, c3));
+  }
+
+  @Test
   public void testLe() throws Exception {
     final String message = "expected message@" + Instant.now();
 
@@ -600,6 +651,54 @@ public class AssertsTest {
   }
 
   @Test
+  public void testLeWithString() throws Exception {
+    // Given
+    String c1 = "a";
+    String c2 = "aa";
+    String c3 = "b";
+
+    assertThrowingCallables(NullPointerException.class,
+        () -> le(null, c2),
+        () -> le(c1, null),
+        () -> le(null, null));
+
+    le(c1, c1);
+    le(c1, c2);
+    le(c1, c3);
+
+    assertThatThrownBy(() -> le(c2, c1)).isInstanceOf(AssertionException.class);
+    le(c2, c2);
+    le(c2, c3);
+
+    assertThrowingCallables(AssertionException.class,
+        () -> le(c3, c1),
+        () -> le(c3, c2));
+    le(c3, c3);
+  }
+
+  @Test
+  public void testLeWithInstant() throws Exception {
+    // Given
+    final Instant c1 = Instant.now();
+    final Instant c2 = c1.plusNanos(1L);
+    final Instant c3 = c2.plusNanos(R.positive());
+
+    // When & Then
+    le(c1, c1);
+    le(c1, c2);
+    le(c1, c3);
+
+    assertThatThrownBy(() -> le(c2, c1)).isInstanceOf(AssertionException.class);
+    le(c2, c2);
+    le(c2, c3);
+
+    assertThrowingCallables(AssertionException.class,
+        () -> le(c3, c1),
+        () -> le(c3, c2));
+    le(c3, c3);
+  }
+
+  @Test
   public void testGt() throws Exception {
     final String message = "expected message@" + Instant.now();
 
@@ -655,6 +754,57 @@ public class AssertsTest {
     gt(1L, 0L, message);
     gt(1.0F, 0.0F, message);
     gt(1.0, 0.0, message);
+  }
+
+  @Test
+  public void testGtWithString() throws Exception {
+    // Given
+    final String c1 = "a";
+    final String c2 = "aa";
+    final String c3 = "b";
+
+    // When & Then
+    assertThrowingCallables(NullPointerException.class,
+        () -> gt(c1, null),
+        () -> gt(null, c1),
+        () -> gt(null, null));
+
+    assertThrowingCallables(AssertionException.class,
+        () -> gt(c1, c1),
+        () -> gt(c1, c2),
+        () -> gt(c1, c3));
+
+    gt(c2, c1);
+    assertThrowingCallables(AssertionException.class,
+        () -> gt(c2, c2),
+        () -> gt(c2, c3));
+
+    gt(c3, c1);
+    gt(c3, c2);
+    assertThatThrownBy(() -> gt(c3, c3)).isInstanceOf(AssertionException.class);
+  }
+
+  @Test
+  public void testGtWithInstant() throws Exception {
+    // Given
+    final Instant c1 = Instant.now();
+    final Instant c2 = c1.plusNanos(1L);
+    final Instant c3 = c2.plusNanos(R.positive());
+
+    // When & Then
+    assertThrowingCallables(AssertionException.class,
+        () -> gt(c1, c1),
+        () -> gt(c1, c2),
+        () -> gt(c1, c3));
+
+    gt(c2, c1);
+    assertThrowingCallables(AssertionException.class,
+        () -> gt(c2, c2),
+        () -> gt(c2, c3));
+
+    gt(c3, c1);
+    gt(c3, c2);
+    assertThatThrownBy(() -> gt(c3, c3)).isInstanceOf(AssertionException.class);
   }
 
   @Test
@@ -718,6 +868,55 @@ public class AssertsTest {
     ge(1L, 0L, message);
     ge(1.0F, 0.0F, message);
     ge(1.0, 0.0, message);
+  }
+
+  @Test
+  public void testGeWithString() throws Exception {
+    // Given
+    final String c1 = "a";
+    final String c2 = "aa";
+    final String c3 = "b";
+
+    // When & Then
+    assertThrowingCallables(NullPointerException.class,
+        () -> ge(c1, null),
+        () -> ge(null, c1),
+        () -> ge(null, null));
+
+    ge(c1, c1);
+    assertThrowingCallables(AssertionException.class,
+        () -> ge(c1, c2),
+        () -> ge(c1, c3));
+
+    ge(c2, c1);
+    ge(c2, c2);
+    assertThatThrownBy(() -> ge(c2, c3)).isInstanceOf(AssertionException.class);
+
+    ge(c3, c1);
+    ge(c3, c2);
+    ge(c3, c3);
+  }
+
+  @Test
+  public void testGeWithInstant() throws Exception {
+    // Given
+    final Instant c1 = Instant.now();
+    final Instant c2 = c1.plusNanos(1L);
+    final Instant c3 = c2.plusNanos(R.positive());
+
+    // When & Then
+    ge(c1, c1);
+    assertThrowingCallables(AssertionException.class,
+        () -> ge(c1, c2),
+        () -> ge(c1, c3));
+
+    ge(c2, c1);
+    ge(c2, c2);
+    assertThatThrownBy(() -> ge(c2, c3)).isInstanceOf(AssertionException.class);
+
+    ge(c3, c1);
+    ge(c3, c2);
+    ge(c3, c3);
   }
 
   @Test

@@ -1694,6 +1694,29 @@ public abstract class Asserts {
   }
 
   /**
+   * <code>c1</code>이 <code>c2</code>보다 작음을 단정한다.
+   *
+   * @param c1
+   * @param c2
+   * @throws NullPointerException
+   *           <code>c1</code> 혹은 <code>c2</code>가 <code>null</code>인 경우.
+   * @throws AssertionException
+   *           단정 실패.
+   * @author Just Burrow
+   * @since 2016. 9. 27.
+   */
+  public static <T extends Comparable<T>> void lt(T c1, T c2)
+      throws NullPointerException, AssertionException {
+    if (null == c1) {
+      throw new NullPointerException("c1 is null.");
+    } else if (null == c2) {
+      throw new NullPointerException("c2 is null.");
+    } else if (c1 == c2 || 0 <= c1.compareTo(c2)) {
+      throw new AssertionException(format("c1[%s] is not less than c2[%s].", c1, c2));
+    }
+  }
+
+  /**
    * 숫자가 기준값보다 작거나 같음을 단정한다.
    *
    * @param number
@@ -1907,6 +1930,31 @@ public abstract class Asserts {
       return;
     }
     throw new AssertionException(message);
+  }
+
+  /**
+   * <code>c1</code>이 <code>c2</code>보다 작거다 같음을 단정한다.
+   *
+   * @param c1
+   * @param c2
+   * @throws NullPointerException
+   *           <code>c1</code> 혹은 <code>c2</code>가 <code>null</code>인 경우.
+   * @throws AssertionException
+   *           단정 실패.
+   * @author Just Burrow
+   * @since 2016. 9. 27.
+   */
+  public static <T extends Comparable<T>> void le(T c1, T c2)
+      throws NullPointerException, AssertionException {
+    if (null == c1) {
+      throw new NullPointerException("c1 is null.");
+    } else if (null == c2) {
+      throw new NullPointerException("c2 is null.");
+    } else if (c1 == c2) {
+      return;
+    } else if (0 < c1.compareTo(c2)) {
+      throw new AssertionException(format("c1[%s] is not less than or equal to c2[%s].", c1, c2));
+    }
   }
 
   /**
@@ -2126,6 +2174,29 @@ public abstract class Asserts {
   }
 
   /**
+   * <code>c1</code>이 <code>c2</code>보다 큼을 단정한다.
+   *
+   * @param c1
+   * @param c2
+   * @throws NullPointerException
+   *           <code>c1</code> 혹은 <code>c2</code>가 <code>null</code>인 경우.
+   * @throws AssertionException
+   *           단정 실패.
+   * @author Just Burrow
+   * @since 2016. 9. 27.
+   */
+  public static <T extends Comparable<T>> void gt(T c1, T c2)
+      throws NullPointerException, AssertionException {
+    if (null == c1) {
+      throw new NullPointerException("c1 is null.");
+    } else if (null == c2) {
+      throw new NullPointerException("c2 is null.");
+    } else if (c1 == c2 || 0 > c1.compareTo(c2)) {
+      throw new AssertionException(format("c1[%s] is not greater than c2[%s].", c1, c2));
+    }
+  }
+
+  /**
    * 숫자가 기준값보다 크거나 같음을 단정한다.
    *
    * @param number
@@ -2339,6 +2410,31 @@ public abstract class Asserts {
       return;
     }
     throw new AssertionException(message);
+  }
+
+  /**
+   * <code>c1</code>이 <code>c2</code>보다 크거나 같음을 단정한다.
+   *
+   * @param c1
+   * @param c2
+   * @throws NullPointerException
+   *           <code>c1</code> 혹은 <code>c2</code>가 <code>null</code>인 경우.
+   * @throws AssertionException
+   *           단정 실패.
+   * @author Just Burrow
+   * @since 2016. 9. 27.
+   */
+  public static <T extends Comparable<T>> void ge(T c1, T c2)
+      throws NullPointerException, AssertionException {
+    if (null == c1) {
+      throw new NullPointerException("c1 is null.");
+    } else if (null == c2) {
+      throw new NullPointerException("c2 is null.");
+    } else if (c1 == c2) {
+      return;
+    } else if (0 >= c1.compareTo(c2)) {
+      throw new AssertionException(format("c1[%s] is not greater than or equal to c2[%s].", c1, c2));
+    }
   }
 
   /**
