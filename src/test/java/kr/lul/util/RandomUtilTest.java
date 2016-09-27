@@ -52,9 +52,39 @@ public class RandomUtilTest {
   }
 
   @Test
+  public void testNegativeWithIntMin() throws Exception {
+    AssertsTest.assertThrowingCallables(IllegalArgumentException.class,
+        () -> R.negative(0),
+        () -> R.negative(1));
+
+    assertThat(R.negative(-1)).isEqualTo(-1);
+    final int min = -1000;
+    for (int i = 0; i < COUNT; i++) {
+      int rand = R.negative(min);
+      assertThat(rand).isGreaterThanOrEqualTo(min)
+          .isLessThan(0);
+    }
+  }
+
+  @Test
   public void testNegativeLong() throws Exception {
     for (int i = 0; i < COUNT; i++) {
       assertThat(R.negativeLong()).isLessThan(0L);
+    }
+  }
+
+  @Test
+  public void testNegativeWithLongMin() throws Exception {
+    AssertsTest.assertThrowingCallables(IllegalArgumentException.class,
+        () -> R.negative(0L),
+        () -> R.negative(1L));
+
+    assertThat(R.negative(-1L)).isEqualTo(-1L);
+    final long min = -1000L;
+    for (int i = 0; i < COUNT; i++) {
+      long r = R.negative(min);
+      assertThat(r).isGreaterThanOrEqualTo(min)
+          .isLessThan(0L);
     }
   }
 
@@ -66,9 +96,40 @@ public class RandomUtilTest {
   }
 
   @Test
+  public void testPositiveWithIntMax() throws Exception {
+    AssertsTest.assertThrowingCallables(IllegalArgumentException.class,
+        () -> R.positive(-1),
+        () -> R.positive(0),
+        () -> R.positive(1));
+
+    assertThat(R.positive(2)).isEqualTo(1);
+
+    final int max = 1000;
+    for (int i = 0; i < COUNT; i++) {
+      assertThat(R.positive(max)).isGreaterThan(0)
+          .isLessThan(max);
+    }
+  }
+
+  @Test
   public void testPositiveLong() throws Exception {
     for (int i = 0; i < COUNT; i++) {
       assertThat(R.positiveLong()).isGreaterThan(0L);
+    }
+  }
+
+  @Test
+  public void testPositiveWithLongMax() throws Exception {
+    AssertsTest.assertThrowingCallables(IllegalArgumentException.class,
+        () -> R.positive(-1L),
+        () -> R.positive(0L),
+        () -> R.positive(1L));
+
+    assertThat(R.positive(2L)).isEqualTo(1L);
+    final long max = 1000L;
+    for (int i = 0; i < COUNT; i++) {
+      assertThat(R.positive(max)).isGreaterThan(0L)
+          .isLessThan(max);
     }
   }
 
@@ -130,9 +191,34 @@ public class RandomUtilTest {
   }
 
   @Test
+  public void testNotPositiveWithIntMin() throws Exception {
+    assertThatThrownBy(() -> R.notPositive(1)).isInstanceOf(IllegalArgumentException.class);
+
+    assertThat(R.notPositive(0)).isEqualTo(0);
+    final int min = -1000;
+    for (int i = 0; i < COUNT; i++) {
+      int r = R.notPositive(min);
+      assertThat(r).isGreaterThanOrEqualTo(min)
+          .isLessThanOrEqualTo(0);
+    }
+  }
+
+  @Test
   public void testNotPositiveLong() throws Exception {
     for (int i = 0; i < COUNT; i++) {
       assertThat(R.notPositiveLong()).isLessThanOrEqualTo(0L);
+    }
+  }
+
+  @Test
+  public void testNotPositiveWithLongMin() throws Exception {
+    assertThatThrownBy(() -> R.notPositive(1L));
+
+    assertThat(R.notPositive(0L)).isEqualTo(0L);
+    final long min = -1000L;
+    for (int i = 0; i < COUNT; i++) {
+      assertThat(R.notPositive(min)).isGreaterThanOrEqualTo(min)
+          .isLessThanOrEqualTo(0L);
     }
   }
 

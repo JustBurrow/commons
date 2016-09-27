@@ -75,6 +75,24 @@ public class RandomUtil {
   }
 
   /**
+   * @param min
+   *          최소값(포함).
+   * @return
+   * @throws IllegalArgumentException
+   *           <code>-1 < min</code>
+   * @author Just Burrow
+   * @since 2016. 9. 27.
+   */
+  public int negative(int min) throws IllegalArgumentException {
+    if (-1 < min) {
+      throw new IllegalArgumentException(format("min[%d] is greater than -1.", min));
+    } else if (-1 == min) {
+      return -1;
+    }
+    return -1 - this.notNegative(-min - 1);
+  }
+
+  /**
    * 임의의 음수를 반환한다.
    *
    * @return 임의의 음수.
@@ -90,6 +108,24 @@ public class RandomUtil {
   }
 
   /**
+   * @param min
+   *          최소값(포함).
+   * @return
+   * @throws IllegalArgumentException
+   *           <code>-1 < min</code>
+   * @author Just Burrow
+   * @since 2016. 9. 27.
+   */
+  public long negative(long min) throws IllegalArgumentException {
+    if (-1L < min) {
+      throw new IllegalArgumentException(format("min[%d] is greater than -1.", min));
+    } else if (-1L == min) {
+      return -1L;
+    }
+    return -1L - this.notNegative(-min - 1);
+  }
+
+  /**
    * 임의의 양의 정수를 반환한다.
    *
    * @return 임의의 양의 정수.
@@ -98,6 +134,22 @@ public class RandomUtil {
    */
   public int positive() {
     return 1 + this.r.nextInt(Integer.MAX_VALUE);
+  }
+
+  /**
+   * @param max
+   *          최대값(미포함).
+   * @return
+   * @throws IllegalArgumentException
+   *           <code>max ≤ 2</code>
+   * @author Just Burrow
+   * @since 2016. 9. 27.
+   */
+  public int positive(int max) throws IllegalArgumentException {
+    if (1 >= max) {
+      throw new IllegalArgumentException(format("max[%d} is less than 2.", max));
+    }
+    return 1 + this.r.nextInt(max - 1);
   }
 
   /**
@@ -115,6 +167,22 @@ public class RandomUtil {
       val *= -1L;
     }
     return 1 + val;
+  }
+
+  /**
+   * @param max
+   *          최대값(미포함).
+   * @return
+   * @throws IllegalArgumentException
+   *           <code>max ≤ 2</code>
+   * @author Just Burrow
+   * @since 2016. 9. 27.
+   */
+  public long positive(long max) throws IllegalArgumentException {
+    if (2L > max) {
+      throw new IllegalArgumentException(format("max[%d] is less than 2.", max));
+    }
+    return 1L + this.notNegative(max - 1L);
   }
 
   /**
@@ -213,6 +281,25 @@ public class RandomUtil {
   }
 
   /**
+   * @param min
+   *          최소값(포함).
+   * @return
+   * @throws IllegalArgumentException
+   *           <code>min > 0</code>
+   * @author Just Burrow
+   * @since 2016. 9. 27.
+   */
+  public int notPositive(int min) throws IllegalArgumentException {
+    if (0 < min) {
+      throw new IllegalArgumentException(format("min[%d] is greater than 0.", min));
+    } else if (0 == min) {
+      return 0;
+    } else {
+      return -this.r.nextInt(1 - min);
+    }
+  }
+
+  /**
    * 0보다 작거나 같은 임의의 수를 반환한다.
    *
    * @return 0 이하의 임의의 수.
@@ -221,6 +308,25 @@ public class RandomUtil {
    */
   public long notPositiveLong() {
     return -this.notNegative(Long.MAX_VALUE);
+  }
+
+  /**
+   * @param min
+   *          최소값(포함).
+   * @return
+   * @throws IllegalArgumentException
+   *           <code>min > 0</code>
+   * @author Just Burrow
+   * @since 2016. 9. 27.
+   */
+  public long notPositive(long min) throws IllegalArgumentException {
+    if (0L < min) {
+      throw new IllegalArgumentException(format("min[%d] is greater than 0.", min));
+    } else if (0L == min) {
+      return 0L;
+    } else {
+      return -this.notNegative(1 - min);
+    }
   }
 
   /**
