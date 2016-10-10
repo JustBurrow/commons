@@ -9,6 +9,7 @@
     <module>lulkr-commons-util</module>
     <module>lulkr-commons-data</module>
     <module>lulkr-commons-test</module>
+    <module>lulkr-commons-api</module>
     <module>lulkr-commons-dependencies</module>
   </modules>
   <properties>

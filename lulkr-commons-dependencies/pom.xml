@@ -24,6 +24,11 @@
         <artifactId>lulkr-commons-test</artifactId>
         <version>${project.version}</version>
       </dependency>
+      <dependency>
+        <groupId>kr.lul</groupId>
+        <artifactId>lulkr-commons-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 </project>
