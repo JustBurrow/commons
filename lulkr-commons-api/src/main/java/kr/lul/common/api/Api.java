@@ -2,26 +2,30 @@
  */
 package kr.lul.common.api;
 
+import static java.lang.String.format;
+
+import java.time.Instant;
+
 /**
  * API 정의.
  *
  * @author Just Burrow
  * @since 2016. 10. 7.
  */
-public interface Api {
+public interface Api extends Namespace {
   /**
    * @return
    * @author Just Burrow
    * @since 2016. 10. 7.
    */
-  public ServiceModule getServiceModule();
+  public Module getModule();
 
   /**
    * @return
    * @author Just Burrow
    * @since 2016. 10. 7.
    */
-  public Namespace getNamespace();
+  public Block getBlock();
 
   /**
    * @return
@@ -31,13 +35,26 @@ public interface Api {
   public Type getType();
 
   /**
-   * 서비스 모듈, 네임스페이스를 제외한 API 경로.
+   * API 만료 시각.
    *
    * @return
    * @author Just Burrow
-   * @since 2016. 10. 7.
+   * @since 2016. 10. 12.
    */
-  public String getSubPath();
+  public Instant getExpire();
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  // <I>Namespace
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /**
+   * @return
+   * @author Just Burrow
+   * @since 2016. 10. 12.
+   */
+  @Override
+  default public String getNamespace() {
+    return getBlock().getCanonicalName();
+  }
 
   /**
    * 전체 경로.
@@ -46,5 +63,8 @@ public interface Api {
    * @author Just Burrow
    * @since 2016. 10. 7.
    */
-  public String getPath();
+  @Override
+  default public String getCanonicalName() {
+    return format("%s %s/%s", getType(), getBlock().getCanonicalName(), getName());
+  }
 }

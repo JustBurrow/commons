@@ -3,23 +3,28 @@
 package kr.lul.common.api;
 
 /**
- * API 네임 스페이스.
- *
  * @author Just Burrow
- * @since 2016. 10. 7.
+ * @since 2016. 10. 12.
  */
 public interface Namespace {
   /**
    * @return
    * @author Just Burrow
-   * @since 2016. 10. 7.
+   * @since 2016. 10. 13.
+   */
+  public String getNamespace();
+
+  /**
+   * @return
+   * @author Just Burrow
+   * @since 2016. 10. 12.
    */
   public String getName();
 
   /**
    * @return
    * @author Just Burrow
-   * @since 2016. 10. 7.
+   * @since 2016. 10. 12.
    */
-  public String getPath();
+  public String getCanonicalName();
 }
