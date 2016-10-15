@@ -2,8 +2,6 @@
  */
 package kr.lul.common.api;
 
-import static java.lang.String.format;
-
 /**
  * API 네임 스페이스.
  *
@@ -29,15 +27,5 @@ public interface Block extends Namespace {
   @Override
   default String getNamespace() {
     return getModule().getCanonicalName();
-  }
-
-  /*
-   * (non-Javadoc)
-   * @author Just Burrow
-   * @since 2016. 10. 12.
-   */
-  @Override
-  default String getCanonicalName() {
-    return format("%s/%s", getModule().getCanonicalName(), getName());
   }
 }

@@ -19,16 +19,6 @@ public interface Module extends Namespace {
    */
   @Override
   default String getNamespace() {
-    return "/";
-  }
-
-  /*
-   * (non-Javadoc)
-   * @author Just Burrow
-   * @since 2016. 10. 7.
-   */
-  @Override
-  default public String getCanonicalName() {
-    return "/" + getName();
+    return "";
   }
 }

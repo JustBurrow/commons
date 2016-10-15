@@ -32,7 +32,7 @@ public interface Api extends Namespace {
    * @author Just Burrow
    * @since 2016. 10. 7.
    */
-  public Type getType();
+  public Operation getOperation();
 
   /**
    * API 만료 시각.
@@ -65,6 +65,6 @@ public interface Api extends Namespace {
    */
   @Override
   default public String getCanonicalName() {
-    return format("%s %s/%s", getType(), getBlock().getCanonicalName(), getName());
+    return format("%s %s/%s", getOperation(), getBlock().getCanonicalName(), getSimpleName());
   }
 }

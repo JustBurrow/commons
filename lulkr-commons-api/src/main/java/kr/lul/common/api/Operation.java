@@ -6,7 +6,7 @@ package kr.lul.common.api;
  * @author Just Burrow
  * @since 2016. 10. 7.
  */
-public enum Type {
+public enum Operation {
   /**
    * 데이터 생성.
    *
