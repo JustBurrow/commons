@@ -2981,13 +2981,41 @@ public abstract class Asserts {
    * @author justburrow
    * @since 2016. 8. 1.
    */
-  public static void matches(CharSequence string, String regex, String message) throws AssertionException {
+  public static void matches(CharSequence string, String regex, String message)
+      throws NullPointerException, AssertionException {
     if (null == string) {
       throw new NullPointerException("string");
     } else if (null == regex) {
       throw new NullPointerException("regex");
     } else if (!(string instanceof String ? (String) string : string.toString()).matches(regex)) {
       throw new AssertionException(message);
+    }
+  }
+
+  /**
+   * 문자열이 정규표현식에 맞는지 단정한다.
+   *
+   * @param string
+   *          단정할 문자열.
+   * @param regex
+   *          기준 정규표현식.
+   * @param message
+   *          단정 실패시의 예외 메시지.
+   * @throws NullPointerException
+   *           문자열이나 정규표현식이 <code>null</code>일 때.
+   * @throws AssertionException
+   *           단정 실패.
+   * @author Just Burrow
+   * @since 2016. 10. 30.
+   */
+  public static void matches(CharSequence string, String regex, MessageGenerator message)
+      throws NullPointerException, AssertionException {
+    if (null == string) {
+      throw new NullPointerException("string");
+    } else if (null == regex) {
+      throw new NullPointerException("regex");
+    } else if (!(string instanceof String ? (String) string : string.toString()).matches(regex)) {
+      throw new AssertionException(message.message());
     }
   }
 

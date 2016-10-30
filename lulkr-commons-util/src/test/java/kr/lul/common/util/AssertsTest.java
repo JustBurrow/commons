@@ -1193,11 +1193,15 @@ public class AssertsTest {
     matches("", ".*");
     matches("0", "\\d*");
 
-    matches("", ".*", null);
-    matches("0", "\\d*", null);
+    matches("", ".*", (String) null);
+    matches("0", "\\d*", (String) null);
+    matches("", ".*", () -> null);
+    matches("0", "\\d*", () -> null);
 
     matches("", ".*", message);
     matches("0", "\\d*", message);
+    matches("", ".*", () -> message);
+    matches("0", "\\d*", () -> message);
 
     assertThrowingCallables(AssertionException.class,
         () -> matches("", ".+"),
@@ -1207,6 +1211,9 @@ public class AssertsTest {
     assertThrowingCallables(AssertionException.class, message,
         () -> matches("", ".+", message),
         () -> matches("0", "\\D+", message),
-        () -> matches("a", "\\d+", message));
+        () -> matches("a", "\\d+", message),
+        () -> matches("", ".+", () -> message),
+        () -> matches("0", "\\D+", () -> message),
+        () -> matches("a", "\\d+", () -> message));
   }
 }

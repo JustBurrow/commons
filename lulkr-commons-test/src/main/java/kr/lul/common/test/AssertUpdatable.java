@@ -19,11 +19,11 @@ import kr.lul.common.data.Updatable;
  */
 public abstract class AssertUpdatable {
   /**
-   * 지정한 시각 이후에 생성됐음을 테스트한다.
+   * 기준 시각 이후에 생성됐음을 테스트한다.
    *
    * @param updatable
    * @param create
-   *          생성 시각 최대값(포함).
+   *          기준 시각(포함).
    * @throws AssertionError
    * @author Just Burrow
    * @since 2016. 9. 27.
@@ -39,7 +39,7 @@ public abstract class AssertUpdatable {
   /**
    * @param updatable
    * @param update
-   *          갱신 시각 최대값(포함).
+   *          기준 시각(포함).
    * @author Just Burrow
    * @since 2016. 9. 27.
    */
@@ -54,9 +54,9 @@ public abstract class AssertUpdatable {
   /**
    * @param updatable
    * @param create
-   *          생성 시각 최대값(포함).
+   *          기준 시각(포함).
    * @param update
-   *          갱신 시각 최대값(포함).
+   *          기준 시각(포함).
    * @author Just Burrow
    * @since 2016. 9. 27.
    */
@@ -64,8 +64,8 @@ public abstract class AssertUpdatable {
     notNull(updatable, "updatable");
     notNull(create, "create");
     notNull(update, "update");
-
     le(create, update);
+
     assertThat(updatable.getCreate()).isNotNull().isGreaterThanOrEqualTo(create);
     assertThat(updatable.getUpdate()).isNotNull().isGreaterThanOrEqualTo(update);
   }
