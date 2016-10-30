@@ -17,7 +17,7 @@ package kr.lul.common.util;
  * @param <V>
  *          리턴 타입.
  */
-public interface Lazy<V> {
+public interface LazyValue<V> {
   /**
    * @return 리턴 값.
    * @author Just Burrow
