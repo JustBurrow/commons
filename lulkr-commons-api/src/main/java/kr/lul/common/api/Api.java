@@ -8,6 +8,7 @@ import java.time.Instant;
 
 /**
  * API 정의.
+ * 기본적으로 {@link Api}를 상속한 <code>enum</code>에서 상세 내용을 정의한다.
  *
  * @author Just Burrow
  * @since 2016. 10. 7.
