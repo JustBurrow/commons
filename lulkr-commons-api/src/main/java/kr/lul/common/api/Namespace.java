@@ -49,6 +49,10 @@ public interface Namespace {
    * @since 2016. 10. 12.
    */
   default public String getCanonicalName() {
-    return format("%s%s%s", getNamespace(), DELIMITER, getSimpleName());
+    if (getSimpleName().isEmpty()) {
+      return getNamespace();
+    } else {
+      return format("%s%s%s", getNamespace(), DELIMITER, getSimpleName());
+    }
   }
 }

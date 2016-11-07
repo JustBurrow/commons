@@ -70,17 +70,4 @@ public interface Api extends Namespace {
   default public String getNamespace() {
     return getBlock().getCanonicalName();
   }
-
-  /**
-   * 전체 경로.
-   *
-   * @return
-   * @author Just Burrow
-   * @since 2016. 10. 7.
-   * @see #getSignature()
-   */
-  @Override
-  default public String getCanonicalName() {
-    return format("%s/%s", getBlock().getCanonicalName(), getSimpleName());
-  }
 }
