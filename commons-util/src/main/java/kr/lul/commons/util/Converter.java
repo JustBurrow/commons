@@ -82,6 +82,8 @@ public interface Converter<S, T> {
      * @param source 원본 오브젝트.
      *
      * @return 변환된 목표 클래스의 오브젝트.
+     *
+     * @throws ConvertException 변환 실패.
      */
-    T convert(S source);
+    T convert(S source) throws ConvertException;
 }

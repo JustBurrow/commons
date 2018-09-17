@@ -10,11 +10,18 @@ package kr.lul.commons.util;
  * @since 2018. 9. 17.
  */
 public interface Parser<T> extends Converter<String, T> {
+    default T parse(String text) throws ParseException {
+        return convert(text);
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // kr.lul.commons.util.Converter
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     default Class<String> getSourceClass() {
         return String.class;
     }
 
     @Override
-    T convert(String text);
+    T convert(String text) throws ConvertException;
 }
