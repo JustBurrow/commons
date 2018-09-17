@@ -1,6 +1,6 @@
 package kr.lul.commons.util;
 
-import static java.util.Objects.requireNonNull;
+import static kr.lul.commons.util.Arguments.notNull;
 
 /**
  * 파서 부분 구현.
@@ -13,7 +13,7 @@ public abstract class AbstractParser<T> implements Parser<T> {
     protected final ConverterId id;
 
     protected AbstractParser(Class<T> targetType) {
-        requireNonNull(targetType, "targetType is null.");
+        notNull(targetType, "targetType");
 
         this.targetType = targetType;
         this.id = new ConverterId(String.class, targetType);

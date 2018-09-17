@@ -1,6 +1,6 @@
 package kr.lul.commons.util;
 
-import static java.util.Objects.requireNonNull;
+import static kr.lul.commons.util.Arguments.notNull;
 
 /**
  * 컨버터 부분 구현.
@@ -14,8 +14,8 @@ public abstract class AbstractConverter<S, T> implements Converter<S, T> {
     protected final ConverterId id;
 
     protected AbstractConverter(Class<S> sourceType, Class<T> targetType) {
-        requireNonNull(sourceType, "sourceType is null.");
-        requireNonNull(targetType, "targetType is null.");
+        notNull(sourceType, "sourceType");
+        notNull(targetType, "targetType");
 
         this.sourceType = sourceType;
         this.targetType = targetType;
