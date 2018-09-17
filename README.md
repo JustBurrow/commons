@@ -1,2 +1,3 @@
-# java-lulkr-util
-일반적인 Java 유틸리티 모듈.
+# Commons
+
+일반적인 프로젝트에서 사용할 수 있는 모듈.
