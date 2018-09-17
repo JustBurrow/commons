@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+}
+
+group 'kr.lul.commons'
+version '0.0.1-SNAPSHOT'
+
+sourceCompatibility = 10
+targetCompatibility = 10
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
