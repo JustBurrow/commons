@@ -62,6 +62,11 @@ public interface Converter<S, T> {
     }
 
     /**
+     * @return 컨버터 ID.
+     */
+    ConverterId getId();
+
+    /**
      * @return 원본 오브젝트의 클래스.
      */
     Class<S> getSourceClass();
@@ -70,11 +75,6 @@ public interface Converter<S, T> {
      * @return 목표 클래스.
      */
     Class<T> getTargetClass();
-
-    /**
-     * @return 컨버터 ID.
-     */
-    ConverterId getId();
 
     /**
      * 원본 오브젝트를 목표 클래스의 오브젝트로 변환한다.

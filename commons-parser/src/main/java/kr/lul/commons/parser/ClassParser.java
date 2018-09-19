@@ -16,15 +16,16 @@ public class ClassParser extends AbstractParser<Class> {
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // kr.lul.commons.util.Converter
+    // kr.lul.commons.util.Parser
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
-    public Class convert(String text) throws ParseException {
+    public Class parse(String text) throws ParseException {
         if (null == text) {
             return null;
         }
         notEmpty(text, "text");
 
+        // 기본 자료형
         switch (text) {
             case BOOLEAN_TYPE_NAME:
                 return Boolean.TYPE;
@@ -44,6 +45,7 @@ public class ClassParser extends AbstractParser<Class> {
                 return Character.TYPE;
         }
 
+        // 오브젝트
         try {
             return Class.forName(text);
         } catch (ClassNotFoundException e) {

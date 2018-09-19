@@ -26,6 +26,11 @@ public abstract class AbstractConverter<S, T> implements Converter<S, T> {
     // lul.kr.commons.util.Converter
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
+    public ConverterId getId() {
+        return this.id;
+    }
+
+    @Override
     public Class<S> getSourceClass() {
         return this.sourceType;
     }
@@ -33,11 +38,6 @@ public abstract class AbstractConverter<S, T> implements Converter<S, T> {
     @Override
     public Class<T> getTargetClass() {
         return this.targetType;
-    }
-
-    @Override
-    public ConverterId getId() {
-        return this.id;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

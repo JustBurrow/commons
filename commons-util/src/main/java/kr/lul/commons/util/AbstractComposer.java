@@ -1,28 +1,30 @@
 package kr.lul.commons.util;
 
+import java.util.Objects;
+
 import static kr.lul.commons.util.Arguments.notNull;
 
 /**
- * 파서 부분 구현.
+ * 컴포저 부분 구현.
  *
- * @param <T> 목표 자료형.
+ * @param <S> 원본 자료형.
  *
  * @author justburrow
- * @since 2018. 9. 17.
+ * @since 2018. 9. 19.
  */
-public abstract class AbstractParser<T> implements Parser<T> {
-    protected final Class<T> targetType;
+public abstract class AbstractComposer<S> implements Composer<S> {
+    protected final Class<S> sourceType;
     protected final ConverterId id;
 
-    protected AbstractParser(Class<T> targetType) {
-        notNull(targetType, "targetType");
+    protected AbstractComposer(Class<S> sourceType) {
+        notNull(sourceType, "sourceType");
 
-        this.targetType = targetType;
-        this.id = new ConverterId(String.class, targetType);
+        this.sourceType = sourceType;
+        this.id = new ConverterId(sourceType, String.class);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // lul.kr.commons.util.Parser
+    // kr.lul.commons.util.Composer
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public ConverterId getId() {
@@ -30,8 +32,8 @@ public abstract class AbstractParser<T> implements Parser<T> {
     }
 
     @Override
-    public Class<T> getTargetClass() {
-        return this.targetType;
+    public Class<S> getSourceClass() {
+        return this.sourceType;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,18 +45,15 @@ public abstract class AbstractParser<T> implements Parser<T> {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (null == obj) return false;
-        if (this == obj) return true;
-        if (obj instanceof AbstractParser) {
-            return this.id.equals(((Parser) obj).getId());
-        } else {
-            return false;
-        }
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AbstractComposer)) return false;
+        AbstractComposer<?> that = (AbstractComposer<?>) o;
+        return Objects.equals(this.id, that.id);
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        return this.id.toString();
     }
 }
