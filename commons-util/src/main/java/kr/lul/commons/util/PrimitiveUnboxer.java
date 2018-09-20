@@ -1,0 +1,17 @@
+package kr.lul.commons.util;
+
+/**
+ * @author justburrow
+ * @since 2018. 9. 20.
+ */
+public interface PrimitiveUnboxer<S, T> extends Converter<S, T> {
+    T unbox(S primitive);
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // kr.lul.commons.util.Converter
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    @Override
+    default T convert(S source) throws ConvertException {
+        return unbox(source);
+    }
+}

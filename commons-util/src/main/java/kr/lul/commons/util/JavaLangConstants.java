@@ -23,6 +23,17 @@ public abstract class JavaLangConstants {
             char[].class
     );
 
+    public static final boolean BOOLEAN_DEFAULT = false;
+    public static final byte BYTE_DEFAULT = (byte) 0;
+    public static final short SHORT_DEFAULT = (short) 0;
+    public static final int INT_DEFAULT = 0;
+    public static final long LONG_DEFAULT = 0L;
+
+    public static final float FLOAT_DEFAULT = 0.0F;
+    public static final double DOUBLE_DEFAULT = 0.0;
+
+    public static final char CHAR_DEFAULT = Character.MIN_VALUE;
+
     /**
      * @see Boolean#TYPE
      */
