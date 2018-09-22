@@ -4,7 +4,7 @@ import kr.lul.commons.util.AbstractParser;
 import kr.lul.commons.util.ParseException;
 
 import static kr.lul.commons.util.Arguments.notEmpty;
-import static kr.lul.commons.util.Constants.*;
+import static kr.lul.commons.util.JavaLangConstants.*;
 
 /**
  * @author justburrow

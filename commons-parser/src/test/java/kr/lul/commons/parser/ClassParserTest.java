@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static java.lang.String.format;
-import static kr.lul.commons.util.Constants.PRIMITIVE_TYPES;
+import static kr.lul.commons.util.JavaLangConstants.PRIMITIVE_TYPES;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
