@@ -106,7 +106,32 @@ public abstract class PrimitiveTypeUtils {
      * @return 인자로 받은 오브젝트.
      */
     public static <T> T box(T object) {
-        return object;
+        if (null == object) {
+            return null;
+        } else if (!object.getClass().isArray()) {
+            return object;
+        }
+
+        switch (object.getClass().getName()) {
+            case BOOLEAN_TYPE_ARRAY_CLASS_NAME:
+                return (T) box((boolean[]) object);
+            case BYTE_TYPE_ARRAY_CLASS_NAME:
+                return (T) box((byte[]) object);
+            case SHORT_TYPE_ARRAY_CLASS_NAME:
+                return (T) box((short[]) object);
+            case INTEGER_TYPE_ARRAY_CLASS_NAME:
+                return (T) box((int[]) object);
+            case LONG_TYPE_ARRAY_CLASS_NAME:
+                return (T) box((long[]) object);
+            case FLOAT_TYPE_ARRAY_CLASS_NAME:
+                return (T) box((float[]) object);
+            case DOUBLE_TYPE_ARRAY_CLASS_NAME:
+                return (T) box((double[]) object);
+            case CHARACTER_TYPE_ARRAY_CLASS_NAME:
+                return (T) box((char[]) object);
+            default:
+                return object;
+        }
     }
 
     /**
@@ -117,6 +142,10 @@ public abstract class PrimitiveTypeUtils {
      * @return {@link Boolean} 배열.
      */
     public static Boolean[] box(boolean[] booleans) {
+        if (null == booleans) {
+            return null;
+        }
+
         Boolean[] array = new Boolean[booleans.length];
         for (int i = 0; i < array.length; i++) {
             array[i] = booleans[i];
@@ -132,6 +161,10 @@ public abstract class PrimitiveTypeUtils {
      * @return {@link Byte} 배열.
      */
     public static Byte[] box(byte[] bytes) {
+        if (null == bytes) {
+            return null;
+        }
+
         Byte[] array = new Byte[bytes.length];
         for (int i = 0; i < array.length; i++) {
             array[i] = bytes[i];
@@ -147,6 +180,10 @@ public abstract class PrimitiveTypeUtils {
      * @return {@link Short} 배열.
      */
     public static Short[] box(short[] shorts) {
+        if (null == shorts) {
+            return null;
+        }
+
         Short[] array = new Short[shorts.length];
         for (int i = 0; i < shorts.length; i++) {
             array[i] = shorts[i];
@@ -162,6 +199,10 @@ public abstract class PrimitiveTypeUtils {
      * @return {@link Integer} 배열.
      */
     public static Integer[] box(int[] ints) {
+        if (null == ints) {
+            return null;
+        }
+
         Integer[] array = new Integer[ints.length];
         for (int i = 0; i < array.length; i++) {
             array[i] = ints[i];
@@ -177,6 +218,10 @@ public abstract class PrimitiveTypeUtils {
      * @return {@link Long} 배열.
      */
     public static Long[] box(long[] longs) {
+        if (null == longs) {
+            return null;
+        }
+
         Long[] array = new Long[longs.length];
         for (int i = 0; i < array.length; i++) {
             array[i] = longs[i];
@@ -192,6 +237,10 @@ public abstract class PrimitiveTypeUtils {
      * @return {@link Float} 배열.
      */
     public static Float[] box(float[] floats) {
+        if (null == floats) {
+            return null;
+        }
+
         Float[] array = new Float[floats.length];
         for (int i = 0; i < array.length; i++) {
             array[i] = floats[i];
@@ -207,6 +256,10 @@ public abstract class PrimitiveTypeUtils {
      * @return {@link Double} 배열.
      */
     public static Double[] box(double[] doubles) {
+        if (null == doubles) {
+            return null;
+        }
+
         Double[] array = new Double[doubles.length];
         for (int i = 0; i < array.length; i++) {
             array[i] = doubles[i];
@@ -222,6 +275,10 @@ public abstract class PrimitiveTypeUtils {
      * @return {@link Character} 배열.
      */
     public static Character[] box(char[] chars) {
+        if (null == chars) {
+            return null;
+        }
+
         Character[] array = new Character[chars.length];
         for (int i = 0; i < array.length; i++) {
             array[i] = chars[i];
@@ -370,7 +427,30 @@ public abstract class PrimitiveTypeUtils {
      * @return 인자로 받은 오브젝트.
      */
     public static <T> T unbox(T object) {
-        return object;
+        if (null == object) {
+            return null;
+        }
+
+        switch (object.getClass().getName()) {
+            case BOOLEAN_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Boolean[]) object);
+            case BYTE_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Byte[]) object);
+            case SHORT_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Short[]) object);
+            case INTEGER_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Integer[]) object);
+            case LONG_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Long[]) object);
+            case FLOAT_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Float[]) object);
+            case DOUBLE_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Double[]) object);
+            case CHARACTER_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Character[]) object);
+            default:
+                return object;
+        }
     }
 
     /**
@@ -383,6 +463,10 @@ public abstract class PrimitiveTypeUtils {
      * @see JavaLangConstants#BOOLEAN_DEFAULT 인자로 받은 배열의 엘리먼트가 {@code null}일 때 사용.
      */
     public static boolean[] unbox(Boolean[] booleans) {
+        if (null == booleans) {
+            return null;
+        }
+
         boolean[] array = new boolean[booleans.length];
         for (int i = 0; i < array.length; i++) {
             array[i] = null == booleans[i]
@@ -402,6 +486,10 @@ public abstract class PrimitiveTypeUtils {
      * @see JavaLangConstants#BYTE_DEFAULT 인자로 받은 배열의 엘리먼트가 {@code null}일 때 사용.
      */
     public static byte[] unbox(Byte[] bytes) {
+        if (null == bytes) {
+            return null;
+        }
+
         byte[] array = new byte[bytes.length];
         for (int i = 0; i < array.length; i++) {
             array[i] = null == bytes[i]
@@ -421,6 +509,10 @@ public abstract class PrimitiveTypeUtils {
      * @see JavaLangConstants#SHORT_DEFAULT 인자로 받은 배열의 엘리먼트가 {@code null}일 때 사용.
      */
     public static short[] unbox(Short[] shorts) {
+        if (null == shorts) {
+            return null;
+        }
+
         short[] array = new short[shorts.length];
         for (int i = 0; i < shorts.length; i++) {
             array[i] = null == shorts[i]
@@ -440,6 +532,10 @@ public abstract class PrimitiveTypeUtils {
      * @see JavaLangConstants#INT_DEFAULT 인자로 받은 배열의 엘리먼트가 {@code null}일 때 사용.
      */
     public static int[] unbox(Integer[] integers) {
+        if (null == integers) {
+            return null;
+        }
+
         int[] array = new int[integers.length];
         for (int i = 0; i < integers.length; i++) {
             array[i] = null == integers[i]
@@ -459,6 +555,10 @@ public abstract class PrimitiveTypeUtils {
      * @see JavaLangConstants#LONG_DEFAULT 인자로 받은 배열의 엘리먼트가 {@code null}일 때 사용.
      */
     public static long[] unbox(Long[] longs) {
+        if (null == longs) {
+            return null;
+        }
+
         long[] array = new long[longs.length];
         for (int i = 0; i < longs.length; i++) {
             array[i] = null == longs[i]
@@ -478,6 +578,10 @@ public abstract class PrimitiveTypeUtils {
      * @see JavaLangConstants#FLOAT_DEFAULT 인자로 받은 배열의 엘리먼트가 {@code null}일 때 사용.
      */
     public static float[] unbox(Float[] floats) {
+        if (null == floats) {
+            return null;
+        }
+
         float[] array = new float[floats.length];
         for (int i = 0; i < floats.length; i++) {
             array[i] = null == floats[i]
@@ -497,6 +601,10 @@ public abstract class PrimitiveTypeUtils {
      * @see JavaLangConstants#DOUBLE_DEFAULT 인자로 받은 배열의 엘리먼트가 {@code null}일 때 사용.
      */
     public static double[] unbox(Double[] doubles) {
+        if (null == doubles) {
+            return null;
+        }
+
         double[] array = new double[doubles.length];
         for (int i = 0; i < doubles.length; i++) {
             array[i] = null == doubles[i]
@@ -516,6 +624,10 @@ public abstract class PrimitiveTypeUtils {
      * @see JavaLangConstants#CHAR_DEFAULT 인자로 받은 배열의 엘리먼트가 {@code null}일 때 사용.
      */
     public static char[] unbox(Character[] characters) {
+        if (null == characters) {
+            return null;
+        }
+
         char[] array = new char[characters.length];
         for (int i = 0; i < characters.length; i++) {
             array[i] = null == characters[i]

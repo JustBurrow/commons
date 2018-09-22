@@ -152,33 +152,65 @@ public abstract class JavaLangConstants {
      */
     public static final String BOOLEAN_TYPE_ARRAY_CLASS_NAME = "[Z";
     /**
+     * @see Boolean
+     */
+    public static final String BOOLEAN_CLASS_ARRAY_CLASS_NAME = "[L" + BOOLEAN_CLASS_NAME + ";";
+    /**
      * @see Byte#TYPE
      */
     public static final String BYTE_TYPE_ARRAY_CLASS_NAME = "[B";
+    /**
+     * @see Byte
+     */
+    public static final String BYTE_CLASS_ARRAY_CLASS_NAME = "[L" + BYTE_CLASS_NAME + ";";
     /**
      * @see Short#TYPE
      */
     public static final String SHORT_TYPE_ARRAY_CLASS_NAME = "[S";
     /**
+     * @see Short
+     */
+    public static final String SHORT_CLASS_ARRAY_CLASS_NAME = "[L" + SHORT_CLASS_NAME + ";";
+    /**
      * @see Integer#TYPE
      */
     public static final String INTEGER_TYPE_ARRAY_CLASS_NAME = "[I";
+    /**
+     * @see Integer
+     */
+    public static final String INTEGER_CLASS_ARRAY_CLASS_NAME = "[L" + INTEGER_CLASS_NAME + ";";
     /**
      * @see Long#TYPE
      */
     public static final String LONG_TYPE_ARRAY_CLASS_NAME = "[J";
     /**
+     * @see Long
+     */
+    public static final String LONG_CLASS_ARRAY_CLASS_NAME = "[L" + LONG_CLASS_NAME + ";";
+    /**
      * @see Float#TYPE
      */
     public static final String FLOAT_TYPE_ARRAY_CLASS_NAME = "[F";
+    /**
+     * @see Float
+     */
+    public static final String FLOAT_CLASS_ARRAY_CLASS_NAME = "[L" + FLOAT_CLASS_NAME + ";";
     /**
      * @see Double#TYPE
      */
     public static final String DOUBLE_TYPE_ARRAY_CLASS_NAME = "[D";
     /**
+     * @see Double
+     */
+    public static final String DOUBLE_CLASS_ARRAY_CLASS_NAME = "[L" + DOUBLE_CLASS_NAME + ";";
+    /**
      * @see Character#TYPE
      */
     public static final String CHARACTER_TYPE_ARRAY_CLASS_NAME = "[C";
+    /**
+     * @see Character
+     */
+    public static final String CHARACTER_CLASS_ARRAY_CLASS_NAME = "[L" + CHARACTER_CLASS_NAME + ";";
 
     /**
      * @see String
