@@ -1,10 +1,12 @@
-package kr.lul.commons.parser;
+package kr.lul.commons.util.converter;
 
 import kr.lul.commons.util.ParseException;
 import kr.lul.commons.util.Strings;
+import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -13,15 +15,13 @@ import static java.lang.String.format;
 import static kr.lul.commons.util.JavaLangConstants.PRIMITIVE_TYPES;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.slf4j.LoggerFactory.getLogger;
 
 /**
  * @author justburrow
  * @since 2018. 9. 18.
  */
 public class ClassParserTest {
-    private static final Logger log = getLogger(ClassParserTest.class);
+    private static final Logger log = LoggerFactory.getLogger(ClassParserTest.class);
 
     private ClassParser parser;
 
@@ -93,7 +93,7 @@ public class ClassParserTest {
         log.info("GIVEN - name={}", name);
 
         // When & Then
-        assertThatThrownBy(() -> this.parser.parse(name))
+        Assertions.assertThatThrownBy(() -> this.parser.parse(name))
                 .isInstanceOf(ParseException.class)
                 .hasCauseInstanceOf(ClassNotFoundException.class)
                 .hasMessageContaining(name);

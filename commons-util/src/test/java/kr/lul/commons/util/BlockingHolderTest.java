@@ -55,7 +55,7 @@ public class BlockingHolderTest {
             actual.get();
         });
         thread.start();
-        Thread.sleep(1L);
+        Thread.sleep(10L);
         assertThat(thread.getState())
                 .isSameAs(State.WAITING);
     }

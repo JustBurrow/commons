@@ -1,7 +1,5 @@
 rootProject.name = 'commons'
 
 include 'commons-util',
-        'commons-parser',
-        'commons-composer',
 
         'commons-test'
