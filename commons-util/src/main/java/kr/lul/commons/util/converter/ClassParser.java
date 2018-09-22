@@ -1,6 +1,6 @@
 package kr.lul.commons.util.converter;
 
-import kr.lul.commons.util.AbstractParser;
+import kr.lul.commons.util.AbstractIdentifiableParser;
 import kr.lul.commons.util.ParseException;
 
 import static kr.lul.commons.util.Arguments.notEmpty;
@@ -10,13 +10,13 @@ import static kr.lul.commons.util.JavaLangConstants.*;
  * @author justburrow
  * @since 2018. 9. 18.
  */
-public class ClassParser extends AbstractParser<Class> {
+public class ClassParser extends AbstractIdentifiableParser<Class> {
     public ClassParser() {
         super(Class.class);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // kr.lul.commons.util.Parser
+    // kr.lul.commons.util.IdentifiableParser
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public Class parse(String text) throws ParseException {

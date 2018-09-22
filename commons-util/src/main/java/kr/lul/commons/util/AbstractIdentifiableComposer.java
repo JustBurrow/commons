@@ -12,22 +12,22 @@ import static kr.lul.commons.util.Arguments.notNull;
  * @author justburrow
  * @since 2018. 9. 19.
  */
-public abstract class AbstractComposer<S> implements Composer<S> {
+public abstract class AbstractIdentifiableComposer<S> implements IdentifiableComposer<S> {
     protected final Class<S> sourceType;
-    protected final ConverterId id;
+    protected final ConverterType id;
 
-    protected AbstractComposer(Class<S> sourceType) {
+    protected AbstractIdentifiableComposer(Class<S> sourceType) {
         notNull(sourceType, "sourceType");
 
         this.sourceType = sourceType;
-        this.id = new ConverterId(sourceType, String.class);
+        this.id = new ConverterType(sourceType, String.class);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // kr.lul.commons.util.Composer
+    // kr.lul.commons.util.IdentifiableComposer
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
-    public ConverterId getId() {
+    public ConverterType getType() {
         return this.id;
     }
 
@@ -47,8 +47,8 @@ public abstract class AbstractComposer<S> implements Composer<S> {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof AbstractComposer)) return false;
-        AbstractComposer<?> that = (AbstractComposer<?>) o;
+        if (!(o instanceof AbstractIdentifiableComposer)) return false;
+        AbstractIdentifiableComposer<?> that = (AbstractIdentifiableComposer<?>) o;
         return Objects.equals(this.id, that.id);
     }
 

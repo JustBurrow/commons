@@ -4,10 +4,8 @@ package kr.lul.commons.util;
  * 오브젝트를 문자열로 변환한다.
  * {@link Converter} 중에서 문자열로 변환하는 특수한 형태.
  *
- * @param <S> 오브젝트를 문자열로 변환한다.
- *
  * @author justburrow
- * @since 2018. 9. 19.
+ * @since 2018. 9. 23.
  */
 public interface Composer<S> extends Converter<S, String> {
     /**
@@ -25,11 +23,6 @@ public interface Composer<S> extends Converter<S, String> {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // kr.lul.commons.util.Converter
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    @Override
-    default Class<String> getTargetClass() {
-        return String.class;
-    }
-
     @Override
     default String convert(S source) throws ConvertException {
         return compose(source);

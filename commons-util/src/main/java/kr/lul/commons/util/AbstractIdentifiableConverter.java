@@ -8,25 +8,25 @@ import static kr.lul.commons.util.Arguments.notNull;
  * @author justburrow
  * @since 2018. 9. 17.
  */
-public abstract class AbstractConverter<S, T> implements Converter<S, T> {
+public abstract class AbstractIdentifiableConverter<S, T> implements IdentifiableConverter<S, T> {
     protected final Class<S> sourceType;
     protected final Class<T> targetType;
-    protected final ConverterId id;
+    protected final ConverterType id;
 
-    protected AbstractConverter(Class<S> sourceType, Class<T> targetType) {
+    protected AbstractIdentifiableConverter(Class<S> sourceType, Class<T> targetType) {
         notNull(sourceType, "sourceType");
         notNull(targetType, "targetType");
 
         this.sourceType = sourceType;
         this.targetType = targetType;
-        this.id = new ConverterId(sourceType, targetType);
+        this.id = new ConverterType(sourceType, targetType);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // lul.kr.commons.util.Converter
+    // lul.kr.commons.util.IdentifiableConverter
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
-    public ConverterId getId() {
+    public ConverterType getType() {
         return this.id;
     }
 
@@ -52,8 +52,8 @@ public abstract class AbstractConverter<S, T> implements Converter<S, T> {
     public boolean equals(Object obj) {
         if (null == obj) return false;
         if (this == obj) return true;
-        if (obj instanceof AbstractConverter) {
-            return this.id.equals(((Parser) obj).getId());
+        if (obj instanceof AbstractIdentifiableConverter) {
+            return this.id.equals(((IdentifiableParser) obj).getType());
         } else {
             return false;
         }

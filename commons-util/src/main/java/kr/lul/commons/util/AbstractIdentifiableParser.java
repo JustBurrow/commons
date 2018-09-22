@@ -10,22 +10,22 @@ import static kr.lul.commons.util.Arguments.notNull;
  * @author justburrow
  * @since 2018. 9. 17.
  */
-public abstract class AbstractParser<T> implements Parser<T> {
+public abstract class AbstractIdentifiableParser<T> implements IdentifiableParser<T> {
     protected final Class<T> targetType;
-    protected final ConverterId id;
+    protected final ConverterType id;
 
-    protected AbstractParser(Class<T> targetType) {
+    protected AbstractIdentifiableParser(Class<T> targetType) {
         notNull(targetType, "targetType");
 
         this.targetType = targetType;
-        this.id = new ConverterId(String.class, targetType);
+        this.id = new ConverterType(String.class, targetType);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // lul.kr.commons.util.Parser
+    // lul.kr.commons.util.IdentifiableParser
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
-    public ConverterId getId() {
+    public ConverterType getType() {
         return this.id;
     }
 
@@ -46,8 +46,8 @@ public abstract class AbstractParser<T> implements Parser<T> {
     public boolean equals(Object obj) {
         if (null == obj) return false;
         if (this == obj) return true;
-        if (obj instanceof AbstractParser) {
-            return this.id.equals(((Parser) obj).getId());
+        if (obj instanceof AbstractIdentifiableParser) {
+            return this.id.equals(((IdentifiableParser) obj).getType());
         } else {
             return false;
         }

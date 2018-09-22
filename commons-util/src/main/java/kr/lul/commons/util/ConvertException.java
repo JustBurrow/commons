@@ -4,7 +4,7 @@ package kr.lul.commons.util;
  * 오브젝트의 변환 실패.
  *
  * @author justburrow
- * @see Converter#convert(Object)
+ * @see IdentifiableConverter#convert(Object)
  * @since 2018. 9. 18.
  */
 public class ConvertException extends RuntimeException {

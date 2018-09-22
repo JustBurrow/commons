@@ -1,7 +1,9 @@
 package kr.lul.commons.util.converter;
 
-import kr.lul.commons.util.AbstractComposer;
 import kr.lul.commons.util.ComposeException;
+import kr.lul.commons.util.Composer;
+
+import java.util.Arrays;
 
 /**
  * {@link Object#toString()} 대용 컴포저.
@@ -10,9 +12,13 @@ import kr.lul.commons.util.ComposeException;
  * @see Object#toString()
  * @since 2018. 9. 20.
  */
-public class ToStringComposer extends AbstractComposer<Object> {
-    public ToStringComposer() {
-        super(Object.class);
+public class ToStringComposer implements Composer<Object> {
+    public static final ToStringComposer INSTANCE;
+
+    static {
+        synchronized (ToStringComposer.class) {
+            INSTANCE = new ToStringComposer();
+        }
     }
 
     public String compose(boolean b) {
@@ -49,6 +55,42 @@ public class ToStringComposer extends AbstractComposer<Object> {
 
     public String compose(String string) {
         return string;
+    }
+
+    public String compose(boolean[] array) {
+        return Arrays.toString(array);
+    }
+
+    public String compose(byte[] array) {
+        return Arrays.toString(array);
+    }
+
+    public String compose(short[] array) {
+        return Arrays.toString(array);
+    }
+
+    public String compose(int[] array) {
+        return Arrays.toString(array);
+    }
+
+    public String compose(long[] array) {
+        return Arrays.toString(array);
+    }
+
+    public String compose(float[] array) {
+        return Arrays.toString(array);
+    }
+
+    public String compose(double[] array) {
+        return Arrays.toString(array);
+    }
+
+    public String compose(char[] array) {
+        return Arrays.toString(array);
+    }
+
+    public <T> String compose(T[] array) {
+        return Arrays.toString(array);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

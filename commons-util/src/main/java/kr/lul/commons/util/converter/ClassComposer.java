@@ -1,19 +1,19 @@
 package kr.lul.commons.util.converter;
 
-import kr.lul.commons.util.AbstractComposer;
+import kr.lul.commons.util.AbstractIdentifiableComposer;
 import kr.lul.commons.util.ConvertException;
 
 /**
  * @author justburrow
  * @since 2018. 9. 19.
  */
-public class ClassComposer extends AbstractComposer<Class> {
+public class ClassComposer extends AbstractIdentifiableComposer<Class> {
     public ClassComposer() {
         super(Class.class);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // kr.lul.commons.util.Composer
+    // kr.lul.commons.util.IdentifiableComposer
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public String compose(Class source) throws ConvertException {
