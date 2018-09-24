@@ -7,6 +7,7 @@ package kr.lul.commons.util;
  * @author justburrow
  * @since 2018. 9. 23.
  */
+@FunctionalInterface
 public interface Composer<S> extends Converter<S, String> {
     /**
      * 오브젝트를 문자열로 변환한다.

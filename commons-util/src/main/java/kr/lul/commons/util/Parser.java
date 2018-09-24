@@ -7,6 +7,7 @@ package kr.lul.commons.util;
  * @author justburrow
  * @since 2018. 9. 23.
  */
+@FunctionalInterface
 public interface Parser<T> extends Converter<String, T> {
     /**
      * 문자열을 목표 클래스의 오브젝트로 변환한다.

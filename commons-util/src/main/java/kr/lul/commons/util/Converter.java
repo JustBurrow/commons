@@ -10,6 +10,7 @@ package kr.lul.commons.util;
  * @author justburrow
  * @since 2018. 9. 23.
  */
+@FunctionalInterface
 public interface Converter<S, T> {
     /**
      * 원본 오브젝트를 목표 클래스의 오브젝트로 변환한다.
