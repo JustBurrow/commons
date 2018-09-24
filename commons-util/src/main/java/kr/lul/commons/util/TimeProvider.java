@@ -20,6 +20,13 @@ public interface TimeProvider {
     ZoneId zoneId();
 
     /**
+     * @return 기준 시간대의 {@link ZoneOffset}.
+     */
+    default ZoneOffset zoneOffset() {
+        return zoneId().getRules().getOffset(now());
+    }
+
+    /**
      * 나노세컨드 정밀도의 현재 시각.
      *
      * @return 현재시각.
@@ -38,35 +45,42 @@ public interface TimeProvider {
     Instant nowMillis();
 
     /**
-     * @return 기준 시간대의 현재 시각.
+     * @return 기준 시간대의 현재 {@link ZonedDateTime}.
      */
     default ZonedDateTime zonedDateTime() {
         return now().atZone(zoneId());
     }
 
     /**
-     * @return 기준 시간대의 시간차를 사용한 현재 시각.
+     * @return 기준 시간대의 현재 {@link OffsetDateTime}.
      */
     default OffsetDateTime offsetDateTime() {
         return OffsetDateTime.ofInstant(now(), zoneId());
     }
 
     /**
-     * @return 지역 시각 정보.
+     * @return 기준 시간대의 현재 {@link OffsetTime}.
+     */
+    default OffsetTime offsetTime() {
+        return OffsetTime.ofInstant(now(), zoneId());
+    }
+
+    /**
+     * @return 기준 시간대의 현재 {@link LocalDateTime}.
      */
     default LocalDateTime localDateTime() {
         return LocalDateTime.ofInstant(now(), zoneId());
     }
 
     /**
-     * @return 지역 일자.
+     * @return 기준 시간대의 현재 {@link LocalDate}.
      */
     default LocalDate localDate() {
         return LocalDate.ofInstant(now(), zoneId());
     }
 
     /**
-     * @return 지역 시각.
+     * @return 기준 시간대의 현재 {@link LocalTime}.
      */
     default LocalTime localTime() {
         return LocalTime.ofInstant(now(), zoneId());
