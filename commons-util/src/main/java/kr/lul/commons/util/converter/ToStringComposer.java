@@ -5,6 +5,8 @@ import kr.lul.commons.util.Composer;
 
 import java.util.Arrays;
 
+import static kr.lul.commons.util.JavaLangConstants.*;
+
 /**
  * {@link Object#toString()} 대용 컴포저.
  *
@@ -13,14 +15,6 @@ import java.util.Arrays;
  * @since 2018. 9. 20.
  */
 public class ToStringComposer implements Composer<Object> {
-    public static final ToStringComposer INSTANCE;
-
-    static {
-        synchronized (ToStringComposer.class) {
-            INSTANCE = new ToStringComposer();
-        }
-    }
-
     public String compose(boolean b) {
         return Boolean.toString(b);
     }
@@ -58,39 +52,57 @@ public class ToStringComposer implements Composer<Object> {
     }
 
     public String compose(boolean[] array) {
-        return Arrays.toString(array);
+        return null == array
+                ? null
+                : Arrays.toString(array);
     }
 
     public String compose(byte[] array) {
-        return Arrays.toString(array);
+        return null == array
+                ? null
+                : Arrays.toString(array);
     }
 
     public String compose(short[] array) {
-        return Arrays.toString(array);
+        return null == array
+                ? null
+                : Arrays.toString(array);
     }
 
     public String compose(int[] array) {
-        return Arrays.toString(array);
+        return null == array
+                ? null
+                : Arrays.toString(array);
     }
 
     public String compose(long[] array) {
-        return Arrays.toString(array);
+        return null == array
+                ? null
+                : Arrays.toString(array);
     }
 
     public String compose(float[] array) {
-        return Arrays.toString(array);
+        return null == array
+                ? null
+                : Arrays.toString(array);
     }
 
     public String compose(double[] array) {
-        return Arrays.toString(array);
+        return null == array
+                ? null
+                : Arrays.toString(array);
     }
 
     public String compose(char[] array) {
-        return Arrays.toString(array);
+        return null == array
+                ? null
+                : Arrays.toString(array);
     }
 
     public <T> String compose(T[] array) {
-        return Arrays.toString(array);
+        return null == array
+                ? null
+                : Arrays.toString(array);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,8 +110,29 @@ public class ToStringComposer implements Composer<Object> {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     public String compose(Object source) throws ComposeException {
-        return null == source
-                ? null
-                : source.toString();
+        if (null == source) {
+            return null;
+        }
+
+        switch (source.getClass().getName()) {
+            case BOOLEAN_TYPE_ARRAY_CLASS_NAME:
+                return compose((boolean[]) source);
+            case BYTE_TYPE_ARRAY_CLASS_NAME:
+                return compose((byte[]) source);
+            case SHORT_TYPE_ARRAY_CLASS_NAME:
+                return compose((short[]) source);
+            case INTEGER_TYPE_ARRAY_CLASS_NAME:
+                return compose((int[]) source);
+            case LONG_TYPE_ARRAY_CLASS_NAME:
+                return compose((long[]) source);
+            case FLOAT_TYPE_ARRAY_CLASS_NAME:
+                return compose((float[]) source);
+            case DOUBLE_TYPE_ARRAY_CLASS_NAME:
+                return compose((double[]) source);
+            case CHARACTER_TYPE_ARRAY_CLASS_NAME:
+                return compose((char[]) source);
+            default:
+                return source.toString();
+        }
     }
 }
