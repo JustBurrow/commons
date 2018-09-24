@@ -118,6 +118,10 @@ public abstract class JavaLangConstants {
      */
     public static final String INSTANT_CLASS_NAME = "java.time.Instant";
     /**
+     * @see java.time.ZoneId
+     */
+    public static final String ZONE_ID_CLASS_NAME = "java.time.ZoneId";
+    /**
      * @see java.time.ZonedDateTime
      */
     public static final String ZONED_DATE_TIME_CLASS_NAME = "java.time.ZonedDateTime";

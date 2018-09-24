@@ -17,10 +17,12 @@ import static kr.lul.commons.util.Arguments.notNull;
 public class OffsetDateTimeComposer
         extends AbstractIdentifiableComposer<OffsetDateTime>
         implements Configurable<DateTimeFormatter> {
+    public static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
+
     private DateTimeFormatter formatter;
 
     public OffsetDateTimeComposer() {
-        this(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        this(DEFAULT_FORMATTER);
     }
 
     public OffsetDateTimeComposer(DateTimeFormatter formatter) {

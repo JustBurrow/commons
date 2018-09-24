@@ -16,10 +16,12 @@ import java.time.format.DateTimeFormatter;
 public class InstantComposer
         extends AbstractIdentifiableComposer<Instant>
         implements Configurable<DateTimeFormatter> {
+    public static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ISO_INSTANT;
+
     private DateTimeFormatter formatter;
 
     public InstantComposer() {
-        this(DateTimeFormatter.ISO_INSTANT);
+        this(DEFAULT_FORMATTER);
     }
 
     public InstantComposer(DateTimeFormatter formatter) {

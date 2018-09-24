@@ -16,10 +16,12 @@ import static kr.lul.commons.util.Arguments.notNull;
 public class LocalDateComposer
         extends AbstractIdentifiableComposer<LocalDate>
         implements Configurable<DateTimeFormatter> {
+    public static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
+
     private DateTimeFormatter formatter;
 
     public LocalDateComposer() {
-        this(DateTimeFormatter.ISO_LOCAL_DATE);
+        this(DEFAULT_FORMATTER);
     }
 
     public LocalDateComposer(DateTimeFormatter formatter) {

@@ -17,10 +17,12 @@ import static kr.lul.commons.util.Arguments.notNull;
 public class ZonedDateTimeComposer
         extends AbstractIdentifiableComposer<ZonedDateTime>
         implements Configurable<DateTimeFormatter> {
+    public static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ISO_ZONED_DATE_TIME;
+
     private DateTimeFormatter formatter;
 
     public ZonedDateTimeComposer() {
-        this(DateTimeFormatter.ISO_ZONED_DATE_TIME);
+        this(DEFAULT_FORMATTER);
     }
 
     public ZonedDateTimeComposer(DateTimeFormatter formatter) {
