@@ -419,41 +419,6 @@ public abstract class PrimitiveTypeUtils {
     }
 
     /**
-     * {@link PrimitiveTypeUtils} 사용자 측이 자료형에 따른 분기문을 작성하지 않아도 되도록 별도의 기능이 없는 메서드를 추가.
-     *
-     * @param object 오브젝트.
-     * @param <T>    오브젝트 타입.
-     *
-     * @return 인자로 받은 오브젝트.
-     */
-    public static <T> T unbox(T object) {
-        if (null == object) {
-            return null;
-        }
-
-        switch (object.getClass().getName()) {
-            case BOOLEAN_CLASS_ARRAY_CLASS_NAME:
-                return (T) unbox((Boolean[]) object);
-            case BYTE_CLASS_ARRAY_CLASS_NAME:
-                return (T) unbox((Byte[]) object);
-            case SHORT_CLASS_ARRAY_CLASS_NAME:
-                return (T) unbox((Short[]) object);
-            case INTEGER_CLASS_ARRAY_CLASS_NAME:
-                return (T) unbox((Integer[]) object);
-            case LONG_CLASS_ARRAY_CLASS_NAME:
-                return (T) unbox((Long[]) object);
-            case FLOAT_CLASS_ARRAY_CLASS_NAME:
-                return (T) unbox((Float[]) object);
-            case DOUBLE_CLASS_ARRAY_CLASS_NAME:
-                return (T) unbox((Double[]) object);
-            case CHARACTER_CLASS_ARRAY_CLASS_NAME:
-                return (T) unbox((Character[]) object);
-            default:
-                return object;
-        }
-    }
-
-    /**
      * 래퍼 클래스 배열을 기본 자료형 배열로 변환한다.
      *
      * @param booleans {@link Boolean} 배열.
@@ -647,6 +612,41 @@ public abstract class PrimitiveTypeUtils {
      */
     public static <T> T[] unbox(T[] objects) {
         return objects;
+    }
+
+    /**
+     * {@link PrimitiveTypeUtils} 사용자 측이 자료형에 따른 분기문을 작성하지 않아도 되도록 별도의 기능이 없는 메서드를 추가.
+     *
+     * @param object 오브젝트.
+     * @param <T>    오브젝트 타입.
+     *
+     * @return 인자로 받은 오브젝트.
+     */
+    public static <T> T unbox(T object) {
+        if (null == object) {
+            return null;
+        }
+
+        switch (object.getClass().getName()) {
+            case BOOLEAN_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Boolean[]) object);
+            case BYTE_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Byte[]) object);
+            case SHORT_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Short[]) object);
+            case INTEGER_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Integer[]) object);
+            case LONG_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Long[]) object);
+            case FLOAT_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Float[]) object);
+            case DOUBLE_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Double[]) object);
+            case CHARACTER_CLASS_ARRAY_CLASS_NAME:
+                return (T) unbox((Character[]) object);
+            default:
+                return object;
+        }
     }
 
     private PrimitiveTypeUtils() {

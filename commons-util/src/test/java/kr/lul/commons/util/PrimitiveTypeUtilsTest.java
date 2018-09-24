@@ -982,6 +982,8 @@ public class PrimitiveTypeUtilsTest {
 
     @Test
     public void testUnboxWithNullWrapperClass() throws Exception {
+        assertThat(unbox((Boolean) null))
+                .isEqualTo(BOOLEAN_DEFAULT);
         assertThat(unbox((Byte) null))
                 .isEqualTo(BYTE_DEFAULT);
         assertThat(unbox((Short) null))
@@ -1004,8 +1006,6 @@ public class PrimitiveTypeUtilsTest {
 
     @Test
     public void testUnboxWithBoolean() throws Exception {
-        assertThat(unbox((Boolean) null))
-                .isEqualTo(BOOLEAN_DEFAULT);
         assertThat(unbox(Boolean.TRUE))
                 .isTrue();
         assertThat(unbox(Boolean.FALSE))
@@ -1819,5 +1819,51 @@ public class PrimitiveTypeUtilsTest {
         assertThat((Object[]) actual)
                 .hasSize(expected.length)
                 .containsExactly(object1, object2, object3, object4, object5);
+    }
+
+    @Test
+    public void testUnboxWithStrings() throws Exception {
+        // Given
+        String[] expected = strings(this.random.nextInt(1, ARRAY_LENGTH_BOUND));
+        String[] backup = Arrays.copyOf(expected, expected.length);
+        log.info("GIVEN - expected={}", expected);
+
+        // When
+        String[] actual = unbox(expected);
+        log.info("WHEN - actual={}", actual);
+
+        // Then
+        assertThat(actual)
+                .isNotNull()
+                .isSameAs(expected)
+                .hasSize(expected.length);
+        for (int i = 0; i < actual.length; i++) {
+            assertThat(actual[i])
+                    .isSameAs(backup[i]);
+        }
+    }
+
+    @Test
+    public void testUnboxWithStringsAsObject() throws Exception {
+        // Given
+        String[] expected = strings(this.random.nextInt(1, ARRAY_LENGTH_BOUND));
+        String[] backup = Arrays.copyOf(expected, expected.length);
+        log.info("GIVEN - expected={}", expected);
+
+        // When
+        Object actual = unbox((Object) expected);
+        log.info("WHEN - actual={}", actual);
+
+        // Then
+        assertThat(actual)
+                .isNotNull()
+                .isSameAs(expected);
+        String[] strings = (String[]) actual;
+        assertThat(strings)
+                .hasSize(expected.length);
+        for (int i = 0; i < strings.length; i++) {
+            assertThat(strings[i])
+                    .isSameAs(backup[i]);
+        }
     }
 }
