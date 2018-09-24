@@ -12,20 +12,20 @@ import static kr.lul.commons.util.Arguments.notNull;
  */
 public abstract class AbstractIdentifiableParser<T> implements IdentifiableParser<T> {
     protected final Class<T> targetType;
-    protected final ConverterType id;
+    protected final ConverterIdentifier id;
 
     protected AbstractIdentifiableParser(Class<T> targetType) {
         notNull(targetType, "targetType");
 
         this.targetType = targetType;
-        this.id = new ConverterType(String.class, targetType);
+        this.id = new ConverterIdentifier(String.class, targetType);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // lul.kr.commons.util.IdentifiableParser
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
-    public ConverterType getType() {
+    public ConverterIdentifier getId() {
         return this.id;
     }
 
@@ -47,7 +47,7 @@ public abstract class AbstractIdentifiableParser<T> implements IdentifiableParse
         if (null == obj) return false;
         if (this == obj) return true;
         if (obj instanceof AbstractIdentifiableParser) {
-            return this.id.equals(((IdentifiableParser) obj).getType());
+            return this.id.equals(((IdentifiableParser) obj).getId());
         } else {
             return false;
         }

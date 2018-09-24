@@ -11,7 +11,7 @@ import static kr.lul.commons.util.Arguments.notNull;
 public abstract class AbstractIdentifiableConverter<S, T> implements IdentifiableConverter<S, T> {
     protected final Class<S> sourceType;
     protected final Class<T> targetType;
-    protected final ConverterType id;
+    protected final ConverterIdentifier id;
 
     protected AbstractIdentifiableConverter(Class<S> sourceType, Class<T> targetType) {
         notNull(sourceType, "sourceType");
@@ -19,14 +19,14 @@ public abstract class AbstractIdentifiableConverter<S, T> implements Identifiabl
 
         this.sourceType = sourceType;
         this.targetType = targetType;
-        this.id = new ConverterType(sourceType, targetType);
+        this.id = new ConverterIdentifier(sourceType, targetType);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // lul.kr.commons.util.IdentifiableConverter
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
-    public ConverterType getType() {
+    public ConverterIdentifier getId() {
         return this.id;
     }
 
@@ -53,7 +53,7 @@ public abstract class AbstractIdentifiableConverter<S, T> implements Identifiabl
         if (null == obj) return false;
         if (this == obj) return true;
         if (obj instanceof AbstractIdentifiableConverter) {
-            return this.id.equals(((IdentifiableParser) obj).getType());
+            return this.id.equals(((AbstractIdentifiableConverter) obj).getId());
         } else {
             return false;
         }

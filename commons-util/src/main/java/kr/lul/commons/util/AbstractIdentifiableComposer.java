@@ -14,20 +14,20 @@ import static kr.lul.commons.util.Arguments.notNull;
  */
 public abstract class AbstractIdentifiableComposer<S> implements IdentifiableComposer<S> {
     protected final Class<S> sourceType;
-    protected final ConverterType id;
+    protected final ConverterIdentifier id;
 
     protected AbstractIdentifiableComposer(Class<S> sourceType) {
         notNull(sourceType, "sourceType");
 
         this.sourceType = sourceType;
-        this.id = new ConverterType(sourceType, String.class);
+        this.id = new ConverterIdentifier(sourceType, String.class);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // kr.lul.commons.util.IdentifiableComposer
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
-    public ConverterType getType() {
+    public ConverterIdentifier getId() {
         return this.id;
     }
 
