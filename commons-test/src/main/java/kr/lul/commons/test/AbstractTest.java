@@ -1,8 +1,13 @@
 package kr.lul.commons.test;
 
+import org.apache.commons.io.FileUtils;
+import org.junit.After;
 import org.junit.Before;
 
+import java.io.File;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -10,17 +15,22 @@ import java.util.concurrent.ThreadLocalRandom;
  * @since 2018. 9. 17.
  */
 public class AbstractTest {
-    private ThreadLocalRandom random;
-    private Instant instantBefore;
+    protected final ThreadLocalRandom random = ThreadLocalRandom.current();
+    private Instant before;
+
+    protected final Set<File> testFiles = new HashSet<>();
 
     @Before
-    public void setUp() throws Exception {
-        if (null == this.random) {
-            this.random = ThreadLocalRandom.current();
-        } else {
-            this.random.setSeed(this.random.nextLong());
-        }
+    protected void setUp() throws Exception {
+        this.random.setSeed(this.random.nextLong());
+        this.before = Instant.now();
+    }
 
-        this.instantBefore = Instant.now();
+    @After
+    protected void tearDown() throws Exception {
+        for (File file : this.testFiles) {
+            FileUtils.deleteQuietly(file);
+        }
+        this.testFiles.clear();
     }
 }
