@@ -30,19 +30,8 @@ public interface TimeProvider {
      * 나노세컨드 정밀도의 현재 시각.
      *
      * @return 현재시각.
-     *
-     * @see #nowMillis() 밀리세컨드 정밀도의 현재시각.
      */
     Instant now();
-
-    /**
-     * 밀리세컨드 정밀도의 현재시각.
-     *
-     * @return 현재 시각.
-     *
-     * @see #now() 나노세컨드 정밀도의 현재 시각.
-     */
-    Instant nowMillis();
 
     /**
      * @return 기준 시간대의 현재 {@link ZonedDateTime}.

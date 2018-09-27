@@ -4,12 +4,12 @@ import java.time.Instant;
 import java.time.ZoneId;
 
 /**
- * 시스템 기본 설정을 따르는 시각 정보를 제공한다.
+ * 시스템 시각 설정을 기준으로 밀리세컨드 단위의 낮은 정밀도로 시각 정보를 제공한다.
  *
  * @author justburrow
- * @since 2018. 9. 17.
+ * @since 2018. 9. 27.
  */
-public class SystemTimeProvider implements TimeProvider {
+public class LowPrecisionSystemTimeProvider implements TimeProvider {
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // kr.lul.commons.util.TimeProvider
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -20,6 +20,6 @@ public class SystemTimeProvider implements TimeProvider {
 
     @Override
     public Instant now() {
-        return Instant.now();
+        return Instant.ofEpochMilli(System.currentTimeMillis());
     }
 }
