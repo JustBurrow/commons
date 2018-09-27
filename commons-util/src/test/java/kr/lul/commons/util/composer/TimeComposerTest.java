@@ -1,4 +1,4 @@
-package kr.lul.commons.util.converter;
+package kr.lul.commons.util.composer;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,8 +8,8 @@ import java.time.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static java.util.Arrays.asList;
-import static kr.lul.commons.util.converter.DurationComposerTest.durations;
-import static kr.lul.commons.util.converter.PeriodComposerTest.periods;
+import static kr.lul.commons.util.composer.DurationComposerTest.durations;
+import static kr.lul.commons.util.composer.PeriodComposerTest.periods;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 

@@ -1,44 +1,46 @@
-package kr.lul.commons.util.converter;
+package kr.lul.commons.util.composer;
 
 import kr.lul.commons.util.AbstractIdentifiableComposer;
 import kr.lul.commons.util.ComposeException;
 import kr.lul.commons.util.Configurable;
 
-import java.time.LocalTime;
+import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 
-import static kr.lul.commons.util.Arguments.notNull;
-
 /**
+ * {@link Instant}용 컴포저.
+ *
  * @author justburrow
- * @since 2018. 9. 24.
+ * @since 2018. 9. 23.
  */
-public class LocalTimeComposer
-        extends AbstractIdentifiableComposer<LocalTime>
+public class InstantComposer
+        extends AbstractIdentifiableComposer<Instant>
         implements Configurable<DateTimeFormatter> {
-    public static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ISO_LOCAL_TIME;
+    public static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ISO_INSTANT;
 
     private DateTimeFormatter formatter;
 
-    public LocalTimeComposer() {
+    public InstantComposer() {
         this(DEFAULT_FORMATTER);
     }
 
-    public LocalTimeComposer(DateTimeFormatter formatter) {
-        super(LocalTime.class);
-        notNull(formatter, "formatter");
-
+    public InstantComposer(DateTimeFormatter formatter) {
+        super(Instant.class);
         this.formatter = formatter;
     }
 
+    public DateTimeFormatter getFormatter() {
+        return this.formatter;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // kr.lul.commons.util.Composer
+    // kr.lul.commons.util.IdentifiableConverter
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
-    public String compose(LocalTime localTime) throws ComposeException {
-        return null == localTime
+    public String compose(Instant instant) throws ComposeException {
+        return null == instant
                 ? null
-                : localTime.format(this.formatter);
+                : this.formatter.format(instant);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

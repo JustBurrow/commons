@@ -1,4 +1,4 @@
-package kr.lul.commons.util.converter;
+package kr.lul.commons.util.composer;
 
 import kr.lul.commons.util.ComposeException;
 import kr.lul.commons.util.Composer;
@@ -37,7 +37,7 @@ public class TimeComposer implements Composer<Object> {
     }
 
     public TimeComposer(DateTimeFormatter zonedDateTime, DateTimeFormatter offsetDateTime,
-                        DateTimeFormatter localDateTime, DateTimeFormatter localDate, DateTimeFormatter localTime) {
+            DateTimeFormatter localDateTime, DateTimeFormatter localDate, DateTimeFormatter localTime) {
         notNull(zonedDateTime, "zonedDateTime");
         notNull(offsetDateTime, "offsetDateTime");
         notNull(localDateTime, "localDateTime");

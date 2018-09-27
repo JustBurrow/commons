@@ -1,10 +1,10 @@
-package kr.lul.commons.util.converter;
+package kr.lul.commons.util.composer;
 
 import kr.lul.commons.util.AbstractIdentifiableComposer;
 import kr.lul.commons.util.ComposeException;
 import kr.lul.commons.util.Configurable;
 
-import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import static kr.lul.commons.util.Arguments.notNull;
@@ -13,19 +13,19 @@ import static kr.lul.commons.util.Arguments.notNull;
  * @author justburrow
  * @since 2018. 9. 24.
  */
-public class LocalDateComposer
-        extends AbstractIdentifiableComposer<LocalDate>
+public class LocalTimeComposer
+        extends AbstractIdentifiableComposer<LocalTime>
         implements Configurable<DateTimeFormatter> {
-    public static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE;
+    public static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ISO_LOCAL_TIME;
 
     private DateTimeFormatter formatter;
 
-    public LocalDateComposer() {
+    public LocalTimeComposer() {
         this(DEFAULT_FORMATTER);
     }
 
-    public LocalDateComposer(DateTimeFormatter formatter) {
-        super(LocalDate.class);
+    public LocalTimeComposer(DateTimeFormatter formatter) {
+        super(LocalTime.class);
         notNull(formatter, "formatter");
 
         this.formatter = formatter;
@@ -35,10 +35,10 @@ public class LocalDateComposer
     // kr.lul.commons.util.Composer
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
-    public String compose(LocalDate localDate) throws ComposeException {
-        return null == localDate
+    public String compose(LocalTime localTime) throws ComposeException {
+        return null == localTime
                 ? null
-                : localDate.format(this.formatter);
+                : localTime.format(this.formatter);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

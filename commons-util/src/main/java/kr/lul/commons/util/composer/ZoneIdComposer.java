@@ -1,4 +1,4 @@
-package kr.lul.commons.util.converter;
+package kr.lul.commons.util.composer;
 
 import kr.lul.commons.util.AbstractIdentifiableComposer;
 import kr.lul.commons.util.ComposeException;

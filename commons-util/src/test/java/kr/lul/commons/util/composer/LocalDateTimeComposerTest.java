@@ -1,10 +1,10 @@
-package kr.lul.commons.util.converter;
+package kr.lul.commons.util.composer;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,22 +14,22 @@ import static org.slf4j.LoggerFactory.getLogger;
  * @author justburrow
  * @since 2018. 9. 24.
  */
-public class LocalDateComposerTest {
-    private static final Logger log = getLogger(LocalDateComposerTest.class);
+public class LocalDateTimeComposerTest {
+    private static final Logger log = getLogger(LocalDateTimeComposerTest.class);
 
-    private LocalDateComposer composer;
+    private LocalDateTimeComposer composer;
 
     @Before
     public void setUp() throws Exception {
-        this.composer = new LocalDateComposer();
+        this.composer = new LocalDateTimeComposer();
     }
 
     @Test
     public void testConstructor() throws Exception {
         assertThat(this.composer)
                 .isNotNull()
-                .extracting(LocalDateComposer::getConfig)
-                .containsSequence(DateTimeFormatter.ISO_LOCAL_DATE);
+                .extracting(LocalDateTimeComposer::getConfig)
+                .containsSequence(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class LocalDateComposerTest {
     @Test
     public void testCompose() throws Exception {
         // Given
-        LocalDate expected = LocalDate.now();
+        LocalDateTime expected = LocalDateTime.now();
         log.info("GIVEN - expected={}", expected);
 
         // When
@@ -51,7 +51,7 @@ public class LocalDateComposerTest {
         // Then
         assertThat(actual)
                 .isNotEmpty();
-        assertThat(LocalDate.parse(actual, this.composer.getConfig()))
+        assertThat(LocalDateTime.parse(actual, this.composer.getConfig()))
                 .isEqualTo(expected);
     }
 }

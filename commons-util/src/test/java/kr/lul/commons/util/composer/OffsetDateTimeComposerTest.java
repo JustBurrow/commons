@@ -1,10 +1,10 @@
-package kr.lul.commons.util.converter;
+package kr.lul.commons.util.composer;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 
-import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -14,22 +14,22 @@ import static org.slf4j.LoggerFactory.getLogger;
  * @author justburrow
  * @since 2018. 9. 24.
  */
-public class ZonedDateTimeComposerTest {
-    private static final Logger log = getLogger(ZonedDateTimeComposerTest.class);
+public class OffsetDateTimeComposerTest {
+    private static final Logger log = getLogger(OffsetDateTimeComposerTest.class);
 
-    private ZonedDateTimeComposer composer;
+    private OffsetDateTimeComposer composer;
 
     @Before
     public void setUp() throws Exception {
-        this.composer = new ZonedDateTimeComposer();
+        this.composer = new OffsetDateTimeComposer();
     }
 
     @Test
     public void testConstructor() throws Exception {
         assertThat(this.composer)
                 .isNotNull()
-                .extracting(ZonedDateTimeComposer::getConfig)
-                .containsSequence(DateTimeFormatter.ISO_ZONED_DATE_TIME);
+                .extracting(OffsetDateTimeComposer::getConfig)
+                .containsSequence(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
     }
 
     @Test
@@ -41,7 +41,7 @@ public class ZonedDateTimeComposerTest {
     @Test
     public void testCompose() throws Exception {
         // Given
-        ZonedDateTime expected = ZonedDateTime.now();
+        OffsetDateTime expected = OffsetDateTime.now();
         log.info("GIVEN - expected={}", expected);
 
         // When
@@ -51,7 +51,7 @@ public class ZonedDateTimeComposerTest {
         // Then
         assertThat(actual)
                 .isNotEmpty();
-        assertThat(ZonedDateTime.parse(actual, this.composer.getConfig()))
+        assertThat(OffsetDateTime.parse(actual, this.composer.getConfig()))
                 .isEqualTo(expected);
     }
 }

@@ -1,13 +1,15 @@
-package kr.lul.commons.util.converter;
+package kr.lul.commons.util.composer;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 
-import java.time.Period;
+import java.time.ZoneId;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static java.util.Arrays.asList;
+import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -15,27 +17,35 @@ import static org.slf4j.LoggerFactory.getLogger;
  * @author justburrow
  * @since 2018. 9. 24.
  */
-@SuppressWarnings("Duplicates")
-public class PeriodComposerTest {
-    private static final Logger log = getLogger(PeriodComposerTest.class);
-    public static final int LOOP_COUNT = 100;
+public class ZoneIdComposerTest {
+    private static final Logger log = getLogger(ZoneIdComposerTest.class);
+    private static final int LOOP_COUNT = 100;
 
-    public static Period[] periods(int length) {
+    /**
+     * TODO 공용 클래스로 이동.
+     *
+     * @param length
+     *
+     * @return
+     */
+    public static ZoneId[] zoneIds(int length) {
         ThreadLocalRandom random = ThreadLocalRandom.current();
-        Period[] array = new Period[length];
+        List<String> zoneIds = ZoneId.SHORT_IDS.values().stream().collect(toList());
+
+        ZoneId[] array = new ZoneId[length];
         for (int i = 0; i < length; i++) {
-            array[i] = Period.of(random.nextInt(), random.nextInt(), random.nextInt());
+            array[i] = ZoneId.of(zoneIds.get(random.nextInt(zoneIds.size())));
         }
         return array;
     }
 
-    private PeriodComposer composer;
+    private ZoneIdComposer composer;
 
     private ThreadLocalRandom random;
 
     @Before
     public void setUp() throws Exception {
-        this.composer = new PeriodComposer();
+        this.composer = new ZoneIdComposer();
 
         if (null == this.random) {
             this.random = ThreadLocalRandom.current();
@@ -52,7 +62,7 @@ public class PeriodComposerTest {
 
     @Test
     public void testCompose() throws Exception {
-        asList(periods(this.random.nextInt(1, LOOP_COUNT))).forEach(expected -> {
+        asList(zoneIds(this.random.nextInt(1, LOOP_COUNT))).forEach(expected -> {
             log.info("GIVEN - expected={}", expected);
 
             // When
@@ -62,7 +72,7 @@ public class PeriodComposerTest {
             // Then
             assertThat(actual)
                     .isNotEmpty();
-            assertThat(Period.parse(actual))
+            assertThat(ZoneId.of(actual))
                     .isEqualTo(expected);
         });
     }
