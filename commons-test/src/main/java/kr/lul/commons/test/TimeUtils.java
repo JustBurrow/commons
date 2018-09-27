@@ -18,7 +18,7 @@ public abstract class TimeUtils {
     public static Instant instant() {
         ThreadLocalRandom random = current();
         return Instant.ofEpochSecond(random.nextLong(-31557014167219200L, 31556889864403200L),
-                                     random.nextLong(1000_000_000L));
+                random.nextLong(1000_000_000L));
     }
 
     /**
@@ -52,6 +52,13 @@ public abstract class TimeUtils {
     }
 
     /**
+     * @return 임의의 {@link OffsetTime}
+     */
+    public static OffsetTime offsetTime() {
+        return OffsetTime.ofInstant(instant(), zoneId());
+    }
+
+    /**
      * @return 임의의 {@link LocalDateTime}.
      */
     public static LocalDateTime localDateTime() {
@@ -61,8 +68,8 @@ public abstract class TimeUtils {
         do {
             try {
                 ldt = LocalDateTime.of(random.nextInt(), random.nextInt(1, 13), random.nextInt(1, 31),
-                                       random.nextInt(24), random.nextInt(60), random.nextInt(60),
-                                       random.nextInt(1000_000));
+                        random.nextInt(24), random.nextInt(60), random.nextInt(60),
+                        random.nextInt(1_000_000_000));
             } catch (DateTimeException e) {
             }
         } while (null == ldt);
@@ -79,7 +86,9 @@ public abstract class TimeUtils {
         LocalDate ld = null;
         do {
             try {
-                ld = LocalDate.of(random.nextInt(), random.nextInt(1, 13), random.nextInt(1, 31));
+                ld = LocalDate.of(random.nextInt(),
+                        random.nextInt(1, 13),
+                        random.nextInt(1, 31));
             } catch (DateTimeException e) {
             }
         } while (null == ld);
@@ -96,8 +105,10 @@ public abstract class TimeUtils {
         LocalTime lt = null;
         do {
             try {
-                lt = LocalTime.of(random.nextInt(0, 23), random.nextInt(60), random.nextInt(60),
-                                  random.nextInt(1_000_000));
+                lt = LocalTime.of(random.nextInt(0, 24),
+                        random.nextInt(60),
+                        random.nextInt(60),
+                        random.nextInt(1_000_000_000));
             } catch (DateTimeException e) {
             }
         } while (null == lt);

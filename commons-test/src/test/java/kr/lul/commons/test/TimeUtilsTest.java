@@ -82,6 +82,19 @@ public class TimeUtilsTest {
     }
 
     @Test
+    public void testOffsetTime() throws Exception {
+        for (int i = 0; i < LOOP_COUNT; i++) {
+            // When
+            OffsetTime actual = TimeUtils.offsetTime();
+            log.info("WHEN - actual={}", actual);
+
+            // Then
+            assertThat(actual)
+                    .isNotNull();
+        }
+    }
+
+    @Test
     public void testLocalDateTime() throws Exception {
         for (int i = 0; i < LOOP_COUNT; i++) {
             // When

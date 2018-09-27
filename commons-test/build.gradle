@@ -3,4 +3,6 @@ dependencies {
 
     compile('org.springframework.boot:spring-boot-starter-test')
     compile('org.springframework.boot:spring-boot-starter-logging')
+
+    compile("commons-io:commons-io:${apacheCommonsIoVersion}")
 }

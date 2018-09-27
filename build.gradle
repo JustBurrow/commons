@@ -46,6 +46,7 @@ subprojects {
     }
 
     ext {
+        apacheCommonsIoVersion = '2.6'
         apacheCommonsLangVersion = '3.8'
     }
 
