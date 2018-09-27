@@ -10,6 +10,9 @@ import static kr.lul.commons.util.JavaLangConstants.*;
 /**
  * {@link Object#toString()} 대용 컴포저.
  *
+ * TODO 배열을 다룰 때, 구분자나 배열의 시작/끝 표시를 설정할 수 있는 방법.
+ * TODO 문자열 배열을 다룰 때, 구분자를 포함하고 있는 경우.
+ *
  * @author justburrow
  * @see Object#toString()
  * @since 2018. 9. 20.
